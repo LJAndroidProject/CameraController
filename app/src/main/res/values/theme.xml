@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="QLTheme" parent="@style/Theme.AppCompat">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/app_default_backgroup</item>
+    <!--<item name="android:colorBackground">@color/app_default_backgroup</item>-->
+        <!--首页顶部返回按钮及右上角按钮颜色样式-->
+        <item name="HomeBackAndRightButtonTheme">@style/HomeBackAndRightButton</item>
+
+        <!--大圆角按钮样式 比如登录、下一步等-->
+        <item name="LargeFilletButton">@style/LargeFilletButton</item>
+    </style>
+
+</resources>

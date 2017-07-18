@@ -1,0 +1,19 @@
+<resources>
+  <!--首页顶部返回按钮及右上角按钮颜色样式-->
+    <style name="HomeBackAndRightButton">
+        <item name="android:background">@drawable/home_backandright_button_bg</item>
+    </style>
+    <!--大圆角按钮样式 比如登录、注册、下一步等-->
+    <style name="LargeFilletButton">
+        <!--<item name="android:text">@string/login</item>-->
+        <!--<item name="android:layout_width">@dimen/login_button_width</item>-->
+        <item name="android:textSize">@dimen/majority_text</item>
+        <item name="android:textColor">@color/secondary_color_ffffff</item>
+        <item name="android:background">@drawable/loging_button_bg</item>
+    </style>
+
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+</resources>

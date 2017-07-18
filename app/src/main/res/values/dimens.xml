@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="little_title">36sp</dimen>
+    <dimen name="important_text">30sp</dimen>
+    <dimen name="main_title">28sp</dimen>
+    <dimen name="majority_text">18sp</dimen>
+    <dimen name="secondary_text">16sp</dimen>
+    <dimen name="dianzan_button_width">26px</dimen>
+    <dimen name="alertdialog_width">560px</dimen>
+    <dimen name="alertdialog_height">347px</dimen>
+    <dimen name="marg_top">40px</dimen>
+    <dimen name="btn_height">40dp</dimen>
+
+    <dimen name="user_login_pading">30dp</dimen>
+    <dimen name="user_login_input_margin">10dp</dimen>
+    <!--标题栏高度-->
+    <dimen name="title_bar_heighr">47dp</dimen>
+    <!--标题栏返回按钮和右上角按钮宽度-->
+    <dimen name="title_bar_backimage_width">52dp</dimen>
+    <!--标题栏返回按钮内边距-->
+    <dimen name="title_bar_backimage_padding">20dp</dimen>
+    <!-- 按钮的高度 -->
+    <dimen name="large_fillet_button_height">42dp</dimen>
+</resources>
