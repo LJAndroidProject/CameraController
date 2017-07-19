@@ -8,6 +8,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/QLTheme">
+        <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
         <activity android:name="com.lj.cameracontroller.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -15,10 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.lj.cameracontroller.activity.MainWebViewActivity">
-    </activity>
+        </activity>
         <activity android:name="com.lj.cameracontroller.activity.DeviceListActivity">
+        </activity>
+        <activity android:name="com.lj.cameracontroller.activity.IPCPlayControlActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
