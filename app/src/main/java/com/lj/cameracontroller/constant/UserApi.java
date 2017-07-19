@@ -1,5 +1,7 @@
 package com.lj.cameracontroller.constant;
 
+import java.util.HashMap;
+
 /**
  * Created by 刘劲松 on 2017/7/10.
  * 用户信息相关的API定义
@@ -7,11 +9,13 @@ package com.lj.cameracontroller.constant;
 
 public class UserApi {
 
+    public static final HashMap<String ,String> map=new HashMap<String,String >();
     // 统一服务器
     public static final String URL = "http://x03.gigetto.cn:803/api/";
 
+
     //登录接口
-    public static final String LOGIN = "api/mobile/user_info.aspx";
+    public static final String LOGIN =URL+ "api/mobile/user_info.aspx";
     public static final String LOGIN_KEY_NO = "PhoneNum";
     public static final String LOGIN_KEY_MD5_PWD = "PassWord";
 

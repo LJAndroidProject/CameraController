@@ -3,6 +3,7 @@ package com.lj.cameracontroller.utils;
 import android.util.SparseArray;
 
 
+import com.lj.cameracontroller.entity.HttpRequest;
 import com.lj.cameracontroller.interfacecallback.IHttpUtilsCallBack;
 
 import java.io.File;
@@ -27,7 +28,7 @@ import okhttp3.Response;
 
 /**
  * 2017/7/7
- * 刘劲松
+ * wangxiaoer
  * 功能描述：Okhttp原始封装
  **/
 public class HttpUtils {
@@ -51,7 +52,7 @@ public class HttpUtils {
     private static long timeconnect = 0;
     private static long timeread = 0;
     private static long timewrite = 0;
-    private static SparseArray<Call> callsList=new SparseArray<>();
+    private static SparseArray<Call> callsList = new SparseArray<>();
 
     /**
      * 构造方法
@@ -105,12 +106,14 @@ public class HttpUtils {
      * @param callBack 回调接口
      */
     public static int get(String url, final IHttpUtilsCallBack callBack) {
+        final HttpRequest httpRequest = new HttpRequest();
         final Request request = new Request.Builder().url(url).method("GET", null).build();
+        httpRequest.setRequest(request);
         setCall(callsList.size(), getHttpClient().newCall(request)).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 if (callBack != null) {
-                    callBack.onFailure(request, e);
+                    callBack.onFailure(httpRequest, e);
                 }
                 int count = callsList.indexOfValue(call);
                 Logger.e("HttpUtils", "count:" + count);
@@ -123,7 +126,7 @@ public class HttpUtils {
                     String result = response.body().string();
                     callBack.onSuccess(result);
                 } catch (IOException e) {
-                    callBack.onFailure(request, e);
+                    callBack.onFailure(httpRequest, e);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -133,7 +136,7 @@ public class HttpUtils {
             }
         });
         //因为添加后数组会增加，不是添加前的值
-        return callsList.size()-1;
+        return callsList.size() - 1;
     }
 
     //-------------------------post请求--------------------------
@@ -159,12 +162,13 @@ public class HttpUtils {
 
     public static int post(String url, Map<String, String> headparam, Map<String, String> params,
                            final IHttpUtilsCallBack callBack) {
+        final HttpRequest httpRequest = new HttpRequest();
         if (params == null) {
             params = new HashMap<>();
         }
         //请求头处理
         Headers headers = null;
-        Headers.Builder headersbuilder = new okhttp3.Headers.Builder();
+        Headers.Builder headersbuilder = new Headers.Builder();
         if (null != headparam) {
             for (Map.Entry<String, String> header : headparam.entrySet()) {
                 headersbuilder.add(header.getKey(), header.getValue());
@@ -189,11 +193,12 @@ public class HttpUtils {
                 .headers(headers)
                 .post(requestBody)
                 .build();
+        httpRequest.setRequest(request);
         setCall(callsList.size(), getHttpClient().newCall(request)).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 if (callBack != null) {
-                    callBack.onFailure(request, e);
+                    callBack.onFailure(httpRequest, e);
                 }
                 int count = callsList.indexOfValue(call);
                 Logger.e("HttpUtils", "count:" + count);
@@ -215,7 +220,7 @@ public class HttpUtils {
             }
         });
         //因为添加后数组会增加，不是添加前的值
-        return callsList.size()-1;
+        return callsList.size() - 1;
     }
 
 
@@ -228,17 +233,19 @@ public class HttpUtils {
      */
     public static int uppost(String URL, String FileUrl, final IHttpUtilsCallBack callBack) {
         //根据文件路径创建File对象
+        final HttpRequest httpRequest = new HttpRequest();
         File file = new File(FileUrl);
         final Request request = new Request.Builder()
                 .url(URL)
                 .post(RequestBody.create(MEDIA_TYPE_PLAIN, file))
                 .build();
+        httpRequest.setRequest(request);
         //上传请求
         setCall(callsList.size(), getHttpClient().newCall(request)).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 if (callBack != null) {
-                    callBack.onFailure(request, e);
+                    callBack.onFailure(httpRequest, e);
                 }
                 int count = callsList.indexOfValue(call);
                 Logger.e("HttpUtils", "count:" + count);
@@ -260,7 +267,7 @@ public class HttpUtils {
 
         });
         //因为添加后数组会增加，不是添加前的值
-        return callsList.size()-1;
+        return callsList.size() - 1;
     }
     //-------------------------文件下载--------------------------
 
@@ -270,13 +277,15 @@ public class HttpUtils {
      * @param callBack
      */
     public static int download(final String url, final String desDir, final IHttpUtilsCallBack callBack) {
+        final HttpRequest httpRequest = new HttpRequest();
         final Request request = new Request.Builder().url(url).method("GET", null).build();
+        httpRequest.setRequest(request);
         setCall(callsList.size(), getHttpClient().newCall(request)).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
                 if (callBack != null) {
-                    callBack.onFailure(request, e);
+                    callBack.onFailure(httpRequest, e);
                 }
                 int count = callsList.indexOfValue(call);
                 Logger.e("HttpUtils", "count:" + count);
@@ -332,7 +341,7 @@ public class HttpUtils {
                 } catch (IOException e) {
                     //如果失败，调用此方法
                     if (callBack != null) {
-                        callBack.onFailure(request, e);
+                        callBack.onFailure(httpRequest, e);
                     }
                     e.printStackTrace();
                 } finally {
@@ -351,7 +360,7 @@ public class HttpUtils {
 
         });
         //因为添加后数组会增加，不是添加前的值
-        return callsList.size()-1;
+        return callsList.size() - 1;
     }
 
     //-------------------------设置Call--------------------------
@@ -364,7 +373,7 @@ public class HttpUtils {
 
     //-------------------------取消请求--------------------------
     public static void CancelHttp(int index) {
-        if(callsList!=null){
+        if (callsList != null) {
             callsList.get(index).cancel();
         }
     }

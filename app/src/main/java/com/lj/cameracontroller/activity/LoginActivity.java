@@ -10,8 +10,14 @@ import android.widget.Toast;
 
 import com.lj.cameracontroller.R;
 import com.lj.cameracontroller.base.BaseActivity;
+import com.lj.cameracontroller.constant.UserApi;
+import com.lj.cameracontroller.entity.HttpRequest;
+import com.lj.cameracontroller.interfacecallback.IHttpUtilsCallBack;
+import com.lj.cameracontroller.utils.HttpUtils;
 import com.lj.cameracontroller.utils.StringUtils;
 import com.lj.cameracontroller.view.TitleView;
+
+import java.io.IOException;
 
 /**
  * Created by 刘劲松 on 2017/7/16.
@@ -64,6 +70,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    private void login(){
+        UserApi.map.clear();
+        UserApi.map.put("","");
+        UserApi.map.put("","");
+        UserApi.map.put("","");
+        HttpUtils.post(UserApi.LOGIN, UserApi.map, new IHttpUtilsCallBack() {
+
+            @Override
+            public void onFailure(HttpRequest request, IOException e) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) throws Exception {
+
+            }
+
+            @Override
+            public void onProgress(float progress, long total) {
+
+            }
+        });
+    }
     private CompoundButton.OnCheckedChangeListener listener= new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

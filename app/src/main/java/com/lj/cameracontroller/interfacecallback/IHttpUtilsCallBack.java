@@ -1,5 +1,7 @@
 package com.lj.cameracontroller.interfacecallback;
 
+import com.lj.cameracontroller.entity.HttpRequest;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -19,7 +21,7 @@ public interface IHttpUtilsCallBack {
      * @param request
      * @param e
      */
-    void onFailure(Request request, IOException e);
+    void onFailure(HttpRequest request, IOException e);
 
     /**
      * 请求成功(需转换)
