@@ -45,14 +45,14 @@ public class DeviceAdapter  extends RecyclerView.Adapter<DeviceAdapter.MyViewHol
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
             if(null!=listData&&listData.size()>0){
                 if("1".equals(listData.get(position).getIpc_status())){ //在线
                     holder.tv_start.setText(mActivity.getResources().getString(R.string.str_online));
-                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_999999));
+                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_cccccc));
                 }else{
                     holder.tv_start.setText(mActivity.getResources().getString(R.string.str_offline));
-                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_cccccc));
+                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_e7e7e7));
                 }
                 if(!StringUtils.isEmpty(listData.get(position).getIpc_pic())){
                     holder.iv_image.setDefaultImage(R.mipmap.tukuxuanze_img);
@@ -65,6 +65,22 @@ public class DeviceAdapter  extends RecyclerView.Adapter<DeviceAdapter.MyViewHol
                         +"-"+listData.get(position).getPdf_name()
                         +"-"+listData.get(position).getIpc_name());
             }
+        holder.ll_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null!=listener){
+                    listener.ItemClick(position);
+                }
+            }
+        });
+        holder.iv_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null!=settingOclick){
+                    settingOclick.ClickSet(position);
+                }
+            }
+        });
     }
 
 
@@ -85,4 +101,19 @@ public class DeviceAdapter  extends RecyclerView.Adapter<DeviceAdapter.MyViewHol
         }
     }
 
+    public interface OnItemclickListener {
+        public void ItemClick(int position);
+    }
+    OnItemclickListener listener;
+    public void setOnItemClickListener(OnItemclickListener onItemClickListener){
+        listener=onItemClickListener;
+    }
+
+    public interface SettingOclick{
+        public void ClickSet(int position);
+    }
+    SettingOclick settingOclick;
+    public void  setSettingOclick(SettingOclick listener){
+        settingOclick=listener;
+    }
 }

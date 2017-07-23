@@ -18,7 +18,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.lj.cameracontroller.base.BaseApplication;
+import com.lj.cameracontroller.utils.FileUtils;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.FIFOLimitedMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 /**
  * 异步加载图片
@@ -122,6 +129,8 @@ public class SoftReferenceImageView extends ImageView {
 			
 			imgUrl = "file:///" + imgUrl;
 		}
+		// 初始化异步显示图片控件的配置
+//		initImageLoader();
 		ImageLoader.getInstance().cancelDisplayTask(this);
 		ImageLoader.getInstance().displayImage(imgUrl, this);
 		if (null != SoftReferenceImageView.this.scaleType) {
@@ -131,7 +140,9 @@ public class SoftReferenceImageView extends ImageView {
 
 	}
 
-	
+
+
+
 
 	/**
 	 * 从SD卡加载图片

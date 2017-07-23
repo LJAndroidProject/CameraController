@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:orientation="horizontal"
         android:padding="5dp"
         android:layout_marginTop="10dp"
@@ -15,8 +15,9 @@
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"
-        android:background="@color/secondary_color_cccccc"
+        android:background="@color/secondary_color_e7e7e7"
         >
+
         <com.lj.cameracontroller.view.SoftReferenceImageView
             android:id="@+id/iv_image"
             android:layout_width="60dp"
@@ -59,8 +60,7 @@
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.0"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="@dimen/secondary_text"
                 android:textColor="@color/secondary_color_333333"

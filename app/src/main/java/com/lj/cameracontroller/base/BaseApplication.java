@@ -2,14 +2,18 @@ package com.lj.cameracontroller.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
 
 import com.lj.cameracontroller.utils.FileUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.FIFOLimitedMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.File;
 
@@ -35,7 +39,6 @@ public class BaseApplication extends Application {
         return AppContext;
     }
 
-    // 初始化异步显示图片控件的配置
     public void initImageLoader(){
         // 使用universal-image-loader
         try {
@@ -46,8 +49,8 @@ public class BaseApplication extends Application {
                     .build();
             //end add by chenrb 2015-12-30，使用缓存
 
-            File cacheFile = new File(FileUtils.getExternalCacheDir(this));
-            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+            File cacheFile = new File(FileUtils.getExternalCacheDir(AppContext));
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(AppContext)
                     // .offOutOfMemoryHandling()
                     .threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2)
                     .denyCacheImageMultipleSizesInMemory()
@@ -67,6 +70,7 @@ public class BaseApplication extends Application {
             // Initialize ImageLoader with configuration.
             ImageLoader.getInstance().init(config);
         } catch (Exception e) {
+            Log.e("初始化报错","e="+e.toString());
             e.printStackTrace();
         }
 

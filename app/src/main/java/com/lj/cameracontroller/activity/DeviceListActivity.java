@@ -1,5 +1,6 @@
 package com.lj.cameracontroller.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,6 +61,7 @@ public class DeviceListActivity extends BaseActivity {
     private String userId = "";
     private String accessToken = "";
     private  List<DeviceListEntity.DeviceEntity> listData=new ArrayList<DeviceListEntity.DeviceEntity>();
+    private  List<DeviceListEntity.DeviceEntity> listData2=new ArrayList<DeviceListEntity.DeviceEntity>();
     private RecyclerView rv_listView;
     private DeviceAdapter adapter;
     private MyDialog dialog;
@@ -120,6 +122,9 @@ public class DeviceListActivity extends BaseActivity {
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listData.clear();
+                listData.addAll(listData2);
+                adapter.notifyDataSetChanged();
                 titleView.setVisibility(View.VISIBLE);
                 ll_search.setVisibility(View.GONE);
             }
@@ -139,8 +144,28 @@ public class DeviceListActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 if (!StringUtils.isEmpty(text)) {
-
+                    search(text);
+                }else{
+                    listData.clear();
+                    listData.addAll(listData2);
+                    adapter.notifyDataSetChanged();
                 }
+            }
+        });
+        adapter.setOnItemClickListener(new DeviceAdapter.OnItemclickListener() {
+            @Override
+            public void ItemClick(int position) {
+                Intent intent=new Intent(DeviceListActivity.this,IPCPlayControlActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("data",listData.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        adapter.setSettingOclick(new DeviceAdapter.SettingOclick() {
+            @Override
+            public void ClickSet(int position) {
+                Toast.makeText(DeviceListActivity.this, "点击了设置" + position, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -158,6 +183,20 @@ public class DeviceListActivity extends BaseActivity {
     }
 
 
+    public void search(String str){
+        listData.clear();
+        if(null!=listData2){
+            for(int i=0;i<listData2.size();i++){
+                String name=listData2.get(i).getGds_name()
+                        +"-"+listData2.get(i).getPdf_name()
+                        +"-"+listData2.get(i).getIpc_name();
+                if(name.contains(str)){
+                    listData.add(listData2.get(i));
+                }
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
     /**
      * 获取设备列表数据
      */
@@ -181,7 +220,9 @@ public class DeviceListActivity extends BaseActivity {
                     DeviceListEntity data = gson.fromJson(result, DeviceListEntity.class);
                     if (null != data && data.getCode() == 1 && null != data.getResult() && data.getResult().size() > 0) { //获取数据成功
                         listData.clear();
+                        listData2.clear();
                         listData.addAll(data.getResult());
+                        listData2.addAll(data.getResult());
                         adapter.notifyDataSetChanged();
                     }
                 }

@@ -13,12 +13,11 @@
 
     <ImageView
         android:id="@+id/iv_back"
-
         android:layout_width="@dimen/title_bar_backimage_width"
         android:layout_height="@dimen/title_bar_heighr"
         android:layout_gravity="center"
-        android:paddingLeft="@dimen/title_bar_backimage_padding"
-        android:paddingRight="@dimen/title_bar_backimage_padding"
+        android:paddingLeft="@dimen/shadow_width"
+        android:paddingRight="@dimen/shadow_width"
         android:src="@mipmap/back_png"
         android:visibility="visible"/>
         <TextView
@@ -55,8 +54,8 @@
             android:layout_gravity="center"
             style="?HomeBackAndRightButtonTheme"
             android:src="@mipmap/back_png"
-            android:paddingLeft="@dimen/title_bar_backimage_padding"
-            android:paddingRight="@dimen/title_bar_backimage_padding"
+            android:paddingLeft="@dimen/shadow_width"
+            android:paddingRight="@dimen/shadow_width"
             android:visibility="gone"/>
         <ImageView
             android:id="@+id/iv_right2"
@@ -65,8 +64,8 @@
             android:layout_gravity="center"
             style="?HomeBackAndRightButtonTheme"
             android:src="@mipmap/back_png"
-            android:paddingLeft="@dimen/title_bar_backimage_padding"
-            android:paddingRight="@dimen/title_bar_backimage_padding"
+            android:paddingLeft="@dimen/shadow_width"
+            android:paddingRight="@dimen/shadow_width"
             android:visibility="gone"/>
         <TextView
             android:id="@+id/tv_right"

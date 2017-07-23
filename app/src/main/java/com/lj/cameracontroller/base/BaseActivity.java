@@ -8,10 +8,19 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import com.lj.cameracontroller.utils.FileUtils;
 import com.lj.cameracontroller.utils.ImmerseHelper;
 import com.lj.cameracontroller.utils.permissions.PermissionListener;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.FIFOLimitedMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,46 +52,4 @@ public abstract class BaseActivity extends FragmentActivity {
         }
     }
 
-
-
-//    public static void requestRuntimePermission(Activity activitie, String[] permissions, PermissionListener listener) {
-//        mListener = listener;
-//        List<String> permissionList = new ArrayList<>();
-//        for (String permission : permissions) {
-//            if (ContextCompat.checkSelfPermission(activitie, permission) != PackageManager.PERMISSION_GRANTED) {
-//                permissionList.add(permission);
-//            }
-//        }
-//        if (!permissionList.isEmpty()) {
-//            ActivityCompat.requestPermissions(activitie, permissionList.toArray(new String[permissionList.size
-//                    ()]), REQUEST_PERMISSION_ID);
-//        } else {
-//            mListener.onGranted();
-//        }
-//    }
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch (requestCode) {
-//            case REQUEST_PERMISSION_ID:
-//                if (grantResults.length > 0) {
-//                    List<String> deniedPermissions = new ArrayList<>();
-//                    for (int i = 0; i < grantResults.length; i++) {
-//                        int grantResult = grantResults[i];
-//                        String permission = permissions[i];
-//                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
-//                            deniedPermissions.add(permission);
-//                        }
-//                    }
-//                    if (deniedPermissions.isEmpty()) {
-//                        mListener.onGranted();
-//                    } else {
-//                        mListener.onDenied(deniedPermissions);
-//                    }
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 }
