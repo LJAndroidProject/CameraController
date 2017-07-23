@@ -19,4 +19,24 @@
         <attr name="mv_isWidthHeightEqual" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="titleView">
+        <!--左上角图片-->
+        <attr name="leftImage" format="reference"></attr>
+        <!--左上角图片是否显示-->
+        <attr name="leftImageVisible" format="boolean"></attr>
+        <!--左上角文字-->
+        <attr name="leftText" format="string"></attr>
+        <!--标题内容-->
+        <attr name="titleContent" format="string"/>
+        <!--右上角图片-->
+        <attr name="rightImage" format="reference"></attr>
+        <!--右上角图片2-->
+        <attr name="rightImage2" format="reference"></attr>
+        <!--右上角图片是否显示-->
+        <attr name="rightImageVisible" format="boolean"></attr>
+        <!--右上角文字-->
+        <attr name="rightText" format="string"></attr>
+        <!--是否拦截返回按钮-->
+        <attr name="interceptOrReturn" format="boolean"></attr>
+    </declare-styleable>
 </resources>

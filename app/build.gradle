@@ -17,7 +17,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INFTICE.txt'
+        exclude 'META-INF/maven/data.domybox.com/data.sdk/pom.properties'
+        exclude 'META-INF/maven/data.domybox.com/data.sdk/pom.xml'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
 }
+
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -35,4 +47,8 @@ dependencies {
     compile files('src/main/libs/AudioEngineSDK.jar')
     compile files('src/main/libs/HCNetSDK.jar')
     compile files('src/main/libs/PlayerSDK.jar')
+    compile files('src/main/libs/jackson-core-asl-1.8.9.jar')
+    compile files('src/main/libs/jackson-mapper-asl-1.8.9.jar')
+    compile files('src/main/libs/universal-image-loader-1.9.3.jar')
+    compile project(':slidingmenu_library-master')
 }

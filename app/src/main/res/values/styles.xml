@@ -16,4 +16,20 @@
         <item name="android:button">@drawable/checkbox_style</item>
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--状态栏颜色-->
+        <item name="colorPrimaryDark">@color/secondary_color_097ba5</item>
+        <!--Toolbar颜色-->
+        <item name="colorPrimary">@color/main_color_098dbe</item>
+        <!--返回键样式-->
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+    </style>
+    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="text_black_14">
+        <item name="android:textColor">@color/secondary_color_333333</item>
+        <item name="android:textSize">@dimen/secondary_text</item>
+    </style>
 </resources>

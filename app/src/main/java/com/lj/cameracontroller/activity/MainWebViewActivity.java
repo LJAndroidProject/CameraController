@@ -1,6 +1,7 @@
 package com.lj.cameracontroller.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -34,7 +35,6 @@ public class MainWebViewActivity extends BaseActivity{
     private void initView(){
         titleView=(TitleView) findViewById(R.id.tv_top);
         titleView.setTv_title(getResources().getString(R.string.str_mainHome));
-        titleView.setIv_backVisible(false);
         webViewHome=(WebView) findViewById(R.id.webViewHome);
     }
 
@@ -77,7 +77,9 @@ public class MainWebViewActivity extends BaseActivity{
         }
         @android.webkit.JavascriptInterface
         public void ClickBtn(){
-
+            Intent intent =new Intent(MainWebViewActivity.this,DeviceListActivity.class);
+            startActivity(intent);
+            finish();
         }
 
     }

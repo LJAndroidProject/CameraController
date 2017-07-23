@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.lj.cameracontroller.view.TitleView
+    android:id="@+id/tv_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:leftImage="@mipmap/ic_launcher"
+    app:titleContent="设备"
+    app:rightImageVisible="true"
+    app:rightImage="@mipmap/setch_img"
+    app:rightImage2="@mipmap/update"
+    app:interceptOrReturn="true"/>
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color_098dbe"
+        android:gravity="center"
+        android:padding="10dip"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="36dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="4dip"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:orientation="horizontal"
+            android:background="@drawable/search_bg" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/setch_img" />
+
+            <EditText
+                android:id="@+id/et_search_text"
+                style="@style/text_black_14"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:hint="关键字查找"
+                android:textColorHint="#999999"
+                android:textSize="15dp"
+                android:layout_marginLeft="4dp"
+                android:background="@android:color/transparent"
+                android:singleLine="true" />
+
+
+            <Button
+                android:id="@+id/btn_clear_search2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@mipmap/wigetx"
+                android:visibility="gone">
+
+            </Button>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            style="?HomeBackAndRightButtonTheme"
+            android:text="@string/str_cancel"
+            android:textColor="@color/secondary_color_ffffff"
+            android:textSize="16dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recyclerview"
+        android:divider="@color/secondary_color_cccccc"
+        android:dividerHeight="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

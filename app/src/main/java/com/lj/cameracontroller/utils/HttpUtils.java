@@ -1,5 +1,6 @@
 package com.lj.cameracontroller.utils;
 
+import android.util.Log;
 import android.util.SparseArray;
 
 
@@ -106,6 +107,7 @@ public class HttpUtils {
      * @param callBack 回调接口
      */
     public static int get(String url, final IHttpUtilsCallBack callBack) {
+        Log.e("请求参数:","url="+url);
         final HttpRequest httpRequest = new HttpRequest();
         final Request request = new Request.Builder().url(url).method("GET", null).build();
         httpRequest.setRequest(request);

@@ -98,7 +98,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     /**初始化界面*/
     private void initView(){
         titleView=(TitleView) findViewById(R.id.tv_top);
-        titleView.iv_back.setVisibility(View.VISIBLE);
+//        titleView.iv_back.setVisibility(View.VISIBLE);
         titleView.setTv_title("摄像头");
         IPCSurfaceView = (SurfaceView) findViewById(R.id.IPCPlaySurFaceView);
         IPCPro = (ProgressBar) findViewById(R.id.IPCPlayPro);
