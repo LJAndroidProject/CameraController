@@ -13,5 +13,5 @@
     android:id="@+id/list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:divider="@color/secondary_color_999999"></ListView>
+    android:divider="@color/secondary_color_e7e7e7"></ListView>
 </LinearLayout>

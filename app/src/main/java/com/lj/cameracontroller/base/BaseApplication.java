@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.lj.cameracontroller.entity.UserInfo;
 import com.lj.cameracontroller.utils.FileUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -26,6 +27,7 @@ public class BaseApplication extends Application {
 
     //全局静态应用上下文对象
     private static Context AppContext;
+    public static UserInfo userInfo;
 
     @Override
     public void onCreate() {
@@ -39,6 +41,10 @@ public class BaseApplication extends Application {
         return AppContext;
     }
 
+    //TODO 静态全局获取用户信息
+    public static UserInfo getUserInfo(){
+        return userInfo;
+    }
     public void initImageLoader(){
         // 使用universal-image-loader
         try {

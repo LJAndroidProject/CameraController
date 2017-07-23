@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:orientation="vertical"
   >
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:background="@drawable/row_bg"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -19,15 +20,15 @@
         android:layout_weight="1"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Medium Text"
-        android:textColor="@color/secondary_color_333333"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        style="@style/text_black_14"
+        android:text=""
+        />
     <ImageView
         android:id="@+id/row_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:padding="10dp"
-        android:src="@mipmap/back_png" />
+        android:src="@mipmap/up_icon" />
     </LinearLayout>
 </LinearLayout>
 <!-- 用于存放列表中的图片和文本。 -->

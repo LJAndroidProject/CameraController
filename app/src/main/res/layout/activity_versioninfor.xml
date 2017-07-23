@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lj.cameracontroller.view.TitleView
+        android:id="@+id/tv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftImage="@mipmap/back_png"
+        app:titleContent="版本信息" />
+
+    <LinearLayout
+        android:id="@+id/ll_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/secondary_color_e7e7e7"
+        android:minHeight="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text_black_14"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/str_version" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/text_black_14"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical|right"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_version"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/secondary_color_e7e7e7"
+        android:minHeight="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text_black_14"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/str_neibu_version" />
+
+        <TextView
+            android:id="@+id/tv_neibu_version"
+            style="@style/text_black_14"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical|right"
+            android:text="" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_update"
+        style="@style/text_black_14"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/detection_update_bg"
+        android:text="@string/str_detection_update" />
+</RelativeLayout>

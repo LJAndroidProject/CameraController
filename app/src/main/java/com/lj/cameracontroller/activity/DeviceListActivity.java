@@ -98,19 +98,37 @@ public class DeviceListActivity extends BaseActivity {
 //        menu.showMenu();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.menu_frame, fragment).commit();
+
+        //TODO 点击右滑菜单中的item
         fragment.setOnItemClickListener(new SampleListFragment.OnItemClickListener() {
             @Override
             public void Onclick(int position) {
-                Toast.makeText(DeviceListActivity.this, "点击了" + position, Toast.LENGTH_LONG).show();
                 menu.showContent();
+               switch (position){
+                   case 0:
+                       Intent intent2 =new Intent(DeviceListActivity.this,VersionInforActivity.class);
+                       startActivity(intent2);
+                       break;
+                   case 1:
+                       Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
+                       startActivity(intent);
+                       finish();
+                       break;
+                   default:
+                       break;
+               }
+
             }
         });
+
+        //TODO 点击左上角按钮显示右滑菜单
         titleView.setOnBackClickListener(new TitleView.backOnclickListener() {
             @Override
             public void onClick() {
                 menu.showMenu();
             }
         });
+        //TODO 点击搜索按钮
         titleView.setrightBtnOnclick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +137,15 @@ public class DeviceListActivity extends BaseActivity {
             }
         });
 
+        //TODO 点击刷新按钮
+        titleView.setrightBtnOnclick2(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDeviceList();
+            }
+        });
+
+        //TODO 点击搜索时的取消按钮
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +156,16 @@ public class DeviceListActivity extends BaseActivity {
                 ll_search.setVisibility(View.GONE);
             }
         });
+
+        //TODO 点击搜索框中清空按钮
+        btn_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_search_text.setText("");
+            }
+        });
+
+        //TODO 对搜索输入框设置监听
         et_search_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,14 +181,18 @@ public class DeviceListActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 if (!StringUtils.isEmpty(text)) {
+                    btn_clear.setVisibility(View.VISIBLE);
                     search(text);
                 }else{
+                    btn_clear.setVisibility(View.GONE);
                     listData.clear();
                     listData.addAll(listData2);
                     adapter.notifyDataSetChanged();
                 }
             }
         });
+
+        //TODO 点击设备列表中的某一项
         adapter.setOnItemClickListener(new DeviceAdapter.OnItemclickListener() {
             @Override
             public void ItemClick(int position) {
@@ -162,10 +203,12 @@ public class DeviceListActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        //TODO 点击设备列表某一项中的设置按钮
         adapter.setSettingOclick(new DeviceAdapter.SettingOclick() {
             @Override
             public void ClickSet(int position) {
-                Toast.makeText(DeviceListActivity.this, "点击了设置" + position, Toast.LENGTH_LONG).show();
+//                Toast.makeText(DeviceListActivity.this, "点击了设置" + position, Toast.LENGTH_LONG).show();
             }
         });
     }

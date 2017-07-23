@@ -24,5 +24,5 @@
     <!-- 按钮的高度 -->
     <dimen name="large_fillet_button_height">42dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
-    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="slidingmenu_offset">120dp</dimen>
 </resources>

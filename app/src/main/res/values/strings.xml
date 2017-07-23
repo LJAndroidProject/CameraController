@@ -8,4 +8,7 @@
     <string name="str_mainHome">主页</string>
     <string name="str_online">在线</string>
     <string name="str_offline">离线</string>
+    <string name="str_version">版本信息</string>
+    <string name="str_neibu_version">内部版本号</string>
+    <string name="str_detection_update">检查更新</string>
 </resources>

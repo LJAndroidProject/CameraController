@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.lj.cameracontroller.R;
 import com.lj.cameracontroller.base.BaseActivity;
+import com.lj.cameracontroller.base.BaseApplication;
 import com.lj.cameracontroller.base.HDateGsonAdapter;
 import com.lj.cameracontroller.constant.UserApi;
 import com.lj.cameracontroller.entity.HttpRequest;
@@ -23,6 +24,7 @@ import com.lj.cameracontroller.utils.HttpUtils;
 import com.lj.cameracontroller.utils.Logger;
 import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.utils.StringUtils;
+import com.lj.cameracontroller.view.MyDialog;
 import com.lj.cameracontroller.view.TitleView;
 
 import java.io.IOException;
@@ -41,6 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String passWord = "";
     private boolean isforgetPwd=false;//是否记住密码
     private static final String TAG="LoginActivity";
+    private MyDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void init(){
+        dialog=new MyDialog(this,0);
         userName=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getString(UserApi.LOGIN_USERNAME);
         passWord=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getString(UserApi.LOGIN_USER_PWD);
         isforgetPwd=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getBoolean(UserApi.ISFORGETPWD);
@@ -104,6 +108,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * 登录
      */
     private void login() {
+        dialog.show();
         HttpUtils.get(UserApi.LOGIN + "?model=get_access_token" + "&user_name=" + userName + "&user_pwd=" + passWord, new IHttpUtilsCallBack() {
             @Override
             public void onFailure(HttpRequest request, IOException e) {
@@ -112,12 +117,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onSuccess(String result) throws Exception {
+                dialog.dismiss();
                 Logger.i(TAG,result);
                 Log.e("登录返回数据：","result="+result);
                 if (!"".equals(result) && !"null".equals(result)) {
                     Gson gson = HDateGsonAdapter.createGson();
                     UserInfo data = gson.fromJson(result, UserInfo.class);
                     if (null != data && data.getCode() == 1&&null!=data.getResult()) { //登录成功
+                        BaseApplication.userInfo=data;
                         StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveDao(UserApi.USERINFOR,data);
 //                        Intent intent =new Intent(LoginActivity.this,MainWebViewActivity.class);
 //                        intent.putExtra("url","http://www.baidu.com");

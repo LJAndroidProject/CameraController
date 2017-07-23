@@ -8,12 +8,13 @@
     android:id="@+id/tv_top"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:leftImage="@mipmap/ic_launcher"
+    app:leftImage="@mipmap/ic_drawer"
     app:titleContent="设备"
     app:rightImageVisible="true"
-    app:rightImage="@mipmap/setch_img"
+    app:rightImage="@mipmap/action_search"
     app:rightImage2="@mipmap/update"
-    app:interceptOrReturn="true"/>
+    app:interceptOrReturn="true"
+    />
     <LinearLayout
         android:id="@+id/ll_search"
         android:layout_width="fill_parent"
