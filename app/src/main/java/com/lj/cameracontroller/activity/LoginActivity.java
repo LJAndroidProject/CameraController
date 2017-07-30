@@ -126,11 +126,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     if (null != data && data.getCode() == 1&&null!=data.getResult()) { //登录成功
                         BaseApplication.userInfo=data;
                         StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveDao(UserApi.USERINFOR,data);
-//                        Intent intent =new Intent(LoginActivity.this,MainWebViewActivity.class);
-//                        intent.putExtra("url","http://www.baidu.com");
-//                        startActivity(intent);
-                        Intent intent =new Intent(LoginActivity.this,DeviceListActivity.class);
+                        Intent intent =new Intent(LoginActivity.this,MainWebViewActivity.class);
+//                        intent.putExtra("url","http://dljk.st.somantou365.online/apps/mt/index.aspx");
+                        intent.putExtra("url",UserApi.MAINWEBURL+"?access_token="+data.getResult().getAccess_token()+"&user_id="+data.getResult().getUser_id());
                         startActivity(intent);
+//                        Intent intent =new Intent(LoginActivity.this,DeviceListActivity.class);
+//                        startActivity(intent);
                         finish();
                     }
                 }

@@ -9,6 +9,9 @@ import android.webkit.WebView;
 import com.lj.cameracontroller.R;
 import com.lj.cameracontroller.base.BaseActivity;
 import com.lj.cameracontroller.base.BaseApplication;
+import com.lj.cameracontroller.constant.UserApi;
+import com.lj.cameracontroller.entity.UserInfo;
+import com.lj.cameracontroller.utils.Logger;
 import com.lj.cameracontroller.utils.NetworkUtils;
 import com.lj.cameracontroller.view.TitleView;
 
@@ -22,6 +25,7 @@ public class MainWebViewActivity extends BaseActivity{
     private TitleView titleView;
     private WebView webViewHome = null;
     private String url = null;
+    private UserInfo userInfo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class MainWebViewActivity extends BaseActivity{
         if (url == null) {
             return;
         }
+        userInfo = BaseApplication.userInfo;
         // 设置WebView属性，能够执行Javascript脚本
         webViewHome.getSettings().setJavaScriptEnabled(true);
         webViewHome.getSettings().setDomStorageEnabled(true);
@@ -66,6 +71,11 @@ public class MainWebViewActivity extends BaseActivity{
                     WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
         webViewHome.addJavascriptInterface(new ClickButton(MainWebViewActivity.this), "clickButton");
+//        if(null != userInfo){
+//            url = UserApi.MAINWEBURL+"?access_token="+userInfo.getResult().getAccess_token()+"&user_id="+userInfo.getResult().getUser_id();
+//        }else{
+//            url = UserApi.MAINWEBURL;
+//        }
         webViewHome.loadUrl(url);
     }
 
@@ -77,6 +87,7 @@ public class MainWebViewActivity extends BaseActivity{
         }
         @android.webkit.JavascriptInterface
         public void ClickBtn(){
+            Logger.e("aaaa","进来了吗");
             Intent intent =new Intent(MainWebViewActivity.this,DeviceListActivity.class);
             startActivity(intent);
             finish();

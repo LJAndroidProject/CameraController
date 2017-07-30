@@ -6,9 +6,9 @@ import java.io.Serializable;
  * Created by ljw on 2017/7/18 0018.
  */
 
-public class ResultResponse implements Serializable {
+public class IPCLoginResponse implements Serializable {
     /**数据返回*/
-    public String result;
+    public IPCLoginInfoResp result;
 
     /**返回消息*/
     public String message;
@@ -17,12 +17,12 @@ public class ResultResponse implements Serializable {
     public String code;
 
     /**数据返回*/
-    public String getResult() {
+    public IPCLoginInfoResp getResult() {
         return result;
     }
 
     /**数据返回*/
-    public void setResult(String result) {
+    public void setResult(IPCLoginInfoResp result) {
         this.result = result;
     }
 

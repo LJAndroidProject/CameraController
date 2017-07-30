@@ -25,9 +25,11 @@ public class UserApi {
     public static final String LOGIN_OUT = "User/LoginOut";
 
     //摄像头登录信息接口
-    public static final String IPC_LOGIN_INFO = URL+"api/mobile/ipc_info.aspx";
+    public static final String IPC_LOGIN_INFO = URL+"/api/mt/ipc_info.aspx";
 
     /**设备列表接口**/
     public static final String IPC_INFO=URL+"api/mt/ipc_info.aspx";
+
+    public static final  String MAINWEBURL = URL+"/apps/mt/index.aspx";
 
 }

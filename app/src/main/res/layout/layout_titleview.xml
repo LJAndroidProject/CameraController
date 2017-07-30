@@ -26,12 +26,14 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"/>
     </LinearLayout>
+
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/title_bar_heighr"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:layout_centerInParent="true"
         android:text="@string/str_title"
         android:textColor="@color/secondary_color_ffffff"
         android:textSize="@dimen/majority_text" />

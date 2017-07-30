@@ -8,7 +8,28 @@
     <string name="str_mainHome">主页</string>
     <string name="str_online">在线</string>
     <string name="str_offline">离线</string>
+    <string name="str_preset">预置点</string>
+    <string name="str_sound">声音</string>
+    <string name="str_mute">静音</string>
+    <string name="str_updown">上下</string>
+    <string name="str_fluent">流畅</string>
+    <string name="str_hightdifinition">高清</string>
+    <string name="str_photograph">拍照</string>
+    <string name="str_up">上</string>
+    <string name="str_down">下</string>
+    <string name="str_left">左</string>
+    <string name="str_right">右</string>
+    <string name="str_zoom">变焦</string>
+    <string name="str_focusing">聚焦</string>
+    <string name="str_iris">光圈</string>
+    <string name="str_add">+</string>
+    <string name="str_reduce">--</string>
     <string name="str_version">版本信息</string>
     <string name="str_neibu_version">内部版本号</string>
     <string name="str_detection_update">检查更新</string>
+    <string name="str_btn_up">ᐃ</string>
+    <string name="str_btn_down">ᐁ</string>
+    <string name="str_btn_left">ᐊ</string>
+    <string name="str_btn_right">ᐅ</string>
+
 </resources>

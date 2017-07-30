@@ -84,7 +84,6 @@ public class TitleView extends LinearLayout {
 
             tv_title = (TextView) view.findViewById(R.id.tv_title);
             tv_title.setText(titleContent);
-
             ll_right = (LinearLayout) view.findViewById(R.id.ll_right);
             iv_right = (ImageView) view.findViewById(R.id.iv_right);
             iv_right2 = (ImageView) view.findViewById(R.id.iv_right2);
@@ -146,6 +145,14 @@ public class TitleView extends LinearLayout {
     public void setTv_title(String title) {
         titleContent=title;
         tv_title.setText(titleContent);
+    }
+
+    public  TextView getTvTitleView(){
+        return tv_title;
+    }
+
+    public LinearLayout getLlBack(){
+        return ll_back;
     }
 
     /**

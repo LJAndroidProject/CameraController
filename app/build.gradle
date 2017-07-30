@@ -1,15 +1,26 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'camera'
+            keyPassword 'ljproject'
+            storeFile file('soumantouipc.jks')
+            storePassword 'ljproject'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.lj.cameracontroller"
-        minSdkVersion 16
+        minSdkVersion 15
+
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -17,7 +28,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
         exclude 'META-INFTICE.txt'
         exclude 'META-INF/maven/data.domybox.com/data.sdk/pom.properties'
@@ -26,13 +36,12 @@ android {
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/LICENSE.txt'
     }
-
 }
 
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    provided fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -51,5 +60,5 @@ dependencies {
     compile files('src/main/libs/jackson-mapper-asl-1.8.9.jar')
     compile files('src/main/libs/universal-image-loader-1.9.3.jar')
     compile project(':slidingmenu_library-master')
-    compile 'com.android.support:support-v4:25.1.0'
+    //    compile 'com.android.support:support-v4:25.1.0'
 }
