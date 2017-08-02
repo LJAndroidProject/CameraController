@@ -26,6 +26,7 @@ import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.utils.StringUtils;
 import com.lj.cameracontroller.view.MyDialog;
 import com.lj.cameracontroller.view.TitleView;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.IOException;
 
@@ -72,6 +73,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         et_UserName.setText(userName);
         et_Password.setText(passWord);
         cb_Forgetpwd.setChecked(isforgetPwd);
+        if(isforgetPwd){ //如果是记住了密码，则直接登录
+            login();
+        }
     }
 
 

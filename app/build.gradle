@@ -20,7 +20,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -60,5 +63,9 @@ dependencies {
     compile files('src/main/libs/jackson-mapper-asl-1.8.9.jar')
     compile files('src/main/libs/universal-image-loader-1.9.3.jar')
     compile project(':slidingmenu_library-master')
+
+    compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+
     //    compile 'com.android.support:support-v4:25.1.0'
 }
