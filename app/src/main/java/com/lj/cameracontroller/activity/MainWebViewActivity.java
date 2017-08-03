@@ -90,7 +90,7 @@ public class MainWebViewActivity extends BaseActivity{
             Logger.e("aaaa","进来了吗");
             Intent intent =new Intent(MainWebViewActivity.this,DeviceListActivity.class);
             startActivity(intent);
-            finish();
+//            finish();
         }
 
     }

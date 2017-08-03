@@ -120,14 +120,14 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         setContentView(R.layout.activity_ipc_control);
         if (!initeSdk())
         {
-            this.finish();
-            return;
+//            this.finish();
+//            return;
         }
 
         if (!initeActivity())
         {
-            this.finish();
-            return;
+//            this.finish();
+//            return;
         }
 //        loginIPC();
     }
@@ -138,6 +138,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         if (!HCNetSDK.getInstance().NET_DVR_Init())
         {
             Log.e(TAG, "HCNetSDK init is failed!");
+            Toast.makeText(this,"初始化失败,错误码："+HCNetSDK.getInstance().NET_DVR_GetLastError(),Toast.LENGTH_LONG).show();
             return false;
         }
         HCNetSDK.getInstance().NET_DVR_SetLogToFile(3, "/mnt/sdcard/sdklog/",true);
@@ -152,6 +153,8 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         if (null != userInfo && null != userInfo.getResult()) {
             userId = userInfo.getResult().getUser_id();
             accessToken = userInfo.getResult().getAccess_token();
+        }else{
+            Toast.makeText(this,"用户信息异常",Toast.LENGTH_LONG).show();
         }
         Intent intent = getIntent();
         Bundle bundle;
@@ -161,6 +164,8 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                 IPCDeviceData = (DeviceListEntity.DeviceEntity)bundle.getSerializable("data");
                 titleView.setTv_title(IPCDeviceData.getGds_name()+"-"+IPCDeviceData.getPdf_name()+"-"+IPCDeviceData.getIpc_name());
                 getIPCLoginInfo();
+            }else{
+                Toast.makeText(this,"摄像头数据异常",Toast.LENGTH_LONG).show();
             }
         }
         return true;
@@ -831,34 +836,34 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                 }
             }else if(viewId == R.id.tv_btn_up){//摄像头上
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
-                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.TILT_UP,0);//0- 开始，1- 停止
+                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_UP,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
-                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.TILT_UP,1);//0- 开始，1- 停止
+                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_UP,1,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_down){//摄像头下
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
-                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.TILT_DOWN,0);//0- 开始，1- 停止
+                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_DOWN,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
-                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.TILT_DOWN,1);//，0- 开始，1- 停止
+                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_DOWN,1,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_left){//摄像头左
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
-                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.PAN_LEFT,0);//0- 开始，1- 停止
+                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_LEFT,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
-                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.PAN_LEFT,1);//，0- 开始，1- 停止
+                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_LEFT,1,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_right){//摄像头右
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
-                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.PAN_RIGHT,0);//，0- 开始，1- 停止
+                    boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_RIGHT,0,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
-                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.PAN_RIGHT,1);//0- 开始，1- 停止
+                    boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_RIGHT,1,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }

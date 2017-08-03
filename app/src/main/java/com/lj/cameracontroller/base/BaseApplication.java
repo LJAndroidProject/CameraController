@@ -3,10 +3,8 @@ package com.lj.cameracontroller.base;
 import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.lj.cameracontroller.constant.UserApi;
 import com.lj.cameracontroller.entity.UserInfo;
 import com.lj.cameracontroller.utils.FileUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;

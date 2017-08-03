@@ -105,13 +105,16 @@ public class DeviceListActivity extends BaseActivity {
             public void Onclick(int position) {
                 menu.showContent();
                switch (position){
-                   case 0:
+                   case 1:
                        Intent intent2 =new Intent(DeviceListActivity.this,VersionInforActivity.class);
                        startActivity(intent2);
                        break;
-                   case 1:
+                   case 2:
                        Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
                        startActivity(intent);
+                       finish();
+                       break;
+                   case 0:
                        finish();
                        break;
                    default:
