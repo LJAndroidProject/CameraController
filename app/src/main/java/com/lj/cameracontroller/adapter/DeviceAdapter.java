@@ -49,10 +49,10 @@ public class DeviceAdapter  extends RecyclerView.Adapter<DeviceAdapter.MyViewHol
             if(null!=listData&&listData.size()>0){
                 if("1".equals(listData.get(position).getIpc_status())){ //在线
                     holder.tv_start.setText(mActivity.getResources().getString(R.string.str_online));
-                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_cccccc));
+                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_BDEEFD));
                 }else{
                     holder.tv_start.setText(mActivity.getResources().getString(R.string.str_offline));
-                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_e7e7e7));
+                    holder.ll_content.setBackgroundColor(mActivity.getResources().getColor(R.color.secondary_color_cccccc));
                 }
                 if(!StringUtils.isEmpty(listData.get(position).getIpc_pic())){
                     holder.iv_image.setDefaultImage(R.mipmap.tukuxuanze_img);

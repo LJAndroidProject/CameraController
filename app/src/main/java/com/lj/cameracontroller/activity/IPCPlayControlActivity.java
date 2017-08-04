@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -84,7 +85,8 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     private SurfaceView IPCSurfaceView;
     private ProgressBar IPCPro;
     private IPCLoginInfoResp ipcLoginInfoResponse;
-    private TextView tvpreset, tvSound, tvresolution, tvUpDown, tvphotograph,tvZoomAdd, tvZoomReduce,tvFocusingAdd,tvFocusingReduce,tvIrisAdd,tvIrisReduce,tvUp,tvDown,tvLeft,tvRight;
+    private TextView tvpreset, tvSound, tvresolution, tvUpDown, tvphotograph, tvUp,tvDown,tvLeft,tvRight;
+    private ImageView tvZoomAdd,tvZoomReduce,tvFocusingAdd,tvFocusingReduce,tvIrisAdd,tvIrisReduce;
     private LinearLayout ptzControl;
     private DeviceListEntity.DeviceEntity IPCDeviceData;
     private UserInfo userInfo = null;
@@ -202,12 +204,12 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         tvresolution = (TextView) findViewById(R.id.ipc_control_tv_resolution);
         tvUpDown = (TextView) findViewById(R.id.ipc_control_tv_updown);
         tvphotograph= (TextView) findViewById(R.id.ipc_control_tv_photograph);
-        tvZoomAdd = (TextView) findViewById(R.id.ipc_control_tv_zoomadd);
-        tvZoomReduce = (TextView) findViewById(R.id.ipc_control_tv_zoomreduce);
-        tvFocusingAdd = (TextView) findViewById(R.id.ipc_control_tv_focusingadd);
-        tvFocusingReduce = (TextView) findViewById(R.id.ipc_control_tv_focusingreduce);
-        tvIrisAdd = (TextView) findViewById(R.id.ipc_control_tv_irisadd);
-        tvIrisReduce = (TextView) findViewById(R.id.ipc_control_tv_irisreduce);
+        tvZoomAdd = (ImageView) findViewById(R.id.ipc_control_tv_zoomadd);
+        tvZoomReduce = (ImageView) findViewById(R.id.ipc_control_tv_zoomreduce);
+        tvFocusingAdd = (ImageView) findViewById(R.id.ipc_control_tv_focusingadd);
+        tvFocusingReduce = (ImageView) findViewById(R.id.ipc_control_tv_focusingreduce);
+        tvIrisAdd = (ImageView) findViewById(R.id.ipc_control_tv_irisadd);
+        tvIrisReduce = (ImageView) findViewById(R.id.ipc_control_tv_irisreduce);
         tvUp= (TextView) findViewById(R.id.tv_btn_up);
         tvDown = (TextView) findViewById(R.id.tv_btn_down);
         tvLeft = (TextView) findViewById(R.id.tv_btn_left);
@@ -788,81 +790,101 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         try {
             if(viewId == R.id.ipc_control_tv_zoomadd){
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){//焦距变大
+                    tvZoomAdd.setImageResource(R.mipmap.btn1a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID, PTZCommand.ZOOM_IN,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvZoomAdd.setImageResource(R.mipmap.btn1);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.ZOOM_IN,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.ipc_control_tv_zoomreduce){//焦距变小
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvZoomReduce.setImageResource(R.mipmap.btn2a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.ZOOM_OUT,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvZoomReduce.setImageResource(R.mipmap.btn2);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.ZOOM_OUT,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.ipc_control_tv_focusingadd){//焦点前调
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvFocusingAdd.setImageResource(R.mipmap.btn1a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.FOCUS_NEAR,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvFocusingAdd.setImageResource(R.mipmap.btn1);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.FOCUS_NEAR,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.ipc_control_tv_focusingreduce){//焦点后条
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvFocusingReduce.setImageResource(R.mipmap.btn2a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.FOCUS_FAR,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvFocusingReduce.setImageResource(R.mipmap.btn2);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.FOCUS_FAR,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.ipc_control_tv_irisadd){
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){//光圈扩大
+                    tvIrisAdd.setImageResource(R.mipmap.btn1a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.IRIS_OPEN,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvIrisAdd.setImageResource(R.mipmap.btn1);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.IRIS_OPEN,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.ipc_control_tv_irisreduce){//光圈缩小
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvIrisReduce.setImageResource(R.mipmap.btn2a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.IRIS_CLOSE,0);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvIrisReduce.setImageResource(R.mipmap.btn2);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControl(m_iPlayID,PTZCommand.IRIS_CLOSE,1);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_up){//摄像头上
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvUp.setBackgroundResource(R.mipmap.btn3a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_UP,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvUp.setBackgroundResource(R.mipmap.btn3);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_UP,1,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_down){//摄像头下
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvDown.setBackgroundResource(R.mipmap.btn6a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_DOWN,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvDown.setBackgroundResource(R.mipmap.btn6);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.TILT_DOWN,1,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_left){//摄像头左
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
+                    tvLeft.setBackgroundResource(R.mipmap.btn4a);
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_LEFT,0,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvLeft.setBackgroundResource(R.mipmap.btn4);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_LEFT,1,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }
             }else if(viewId == R.id.tv_btn_right){//摄像头右
+                tvRight.setBackgroundResource(R.mipmap.btn5a);
                 if(motionEvent.getAction()== MotionEvent.ACTION_DOWN){
                     boolean isSuccess = HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_RIGHT,0,4);//，0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
+                    tvRight.setBackgroundResource(R.mipmap.btn5);
                     boolean isSuccess =  HCNetSDK.getInstance().NET_DVR_PTZControlWithSpeed(m_iPlayID,PTZCommand.PAN_RIGHT,1,4);//0- 开始，1- 停止
                     Logger.e(TAG,isSuccess+"....."+HCNetSDK.getInstance().NET_DVR_GetLastError());
                 }

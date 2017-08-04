@@ -52,9 +52,9 @@ public class SampleListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mActivity = SampleListFragment.this.getActivity();
-        listData.add(new SampleItem("配电房列表", getResources().getDrawable(R.mipmap.back_png)));
-        listData.add(new SampleItem("版本信息", getResources().getDrawable(R.mipmap.back_png)));
-        listData.add(new SampleItem("注销", getResources().getDrawable(R.mipmap.back_png)));
+        listData.add(new SampleItem("配电房列表", getResources().getDrawable(R.mipmap.btn_right_arror)));
+        listData.add(new SampleItem("版本信息", getResources().getDrawable(R.mipmap.btn_right_arror)));
+        listData.add(new SampleItem("注销", getResources().getDrawable(R.mipmap.btn_right_arror)));
         view = inflater.inflate(R.layout.left_menu, container, false);
         listView = (ListView) view.findViewById(R.id.list);
         adapter = new MyAdapter();

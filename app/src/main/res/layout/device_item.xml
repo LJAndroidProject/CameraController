@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+   >
 
     <LinearLayout
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:paddingRight="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -20,8 +21,8 @@
 
         <com.lj.cameracontroller.view.SoftReferenceImageView
             android:id="@+id/iv_image"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:src="@mipmap/tukuxuanze_img"
             android:scaleType="fitXY" />
         <!--<ImageView-->
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginRight="5dp"
+                android:paddingTop="5dp"
                 >
                 <TextView
                     android:id="@+id/tv_start"
@@ -48,13 +50,13 @@
                     android:layout_weight="1.0"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/secondary_text"
-                    android:textColor="@color/secondary_color_333333"
+                    android:textColor="@color/secondary_color_000000"
                     />
                 <ImageView
                     android:id="@+id/iv_setting"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/ping"
                     />
             </LinearLayout>
             <TextView
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="@dimen/secondary_text"
+                android:maxLines="2"
                 android:textColor="@color/secondary_color_333333"
                 android:text="@string/str_login"
                 />

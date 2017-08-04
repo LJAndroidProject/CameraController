@@ -8,16 +8,20 @@
     <color name="secondary_color_01baff">#01baff</color>
     <color name="secondary_color_00c249">#00c249</color>
     <color name="secondary_color_333333">#333333</color>
+    <color name="secondary_color_000000">#000000</color>
     <color name="secondary_color_666666">#666666</color>
     <color name="secondary_color_999999">#999999</color>
     <color name="secondary_color_cccccc">#cccccc</color>
     <color name="secondary_color_e7e7e7">#e7e7e7</color>
     <color name="secondary_color_ffffff">#ffffff</color>
     <color name="secondary_color_097ba5">#097ba5</color>
+    <color name="secondary_color_BDEEFD">#BDEEFD</color>
+    <color name="secondary_color_555555">#555555</color>
     <color name="app_default_backgroup">#FFFFFF</color>
     <color name="filter_menu_99FFFFFF">#99FFFFFF</color>
     <color name="filter_menu_01000000">#01000000</color>
     <color name="white_trans_50">#55000000</color>
     <color name="backgroud_color">#f6f6f6</color>
+
 
 </resources>
