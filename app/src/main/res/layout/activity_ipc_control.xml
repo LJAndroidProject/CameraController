@@ -15,12 +15,15 @@
         android:id="@+id/IPCPlayLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#2f2f2f">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/ipcplay_bg">
 
         <SurfaceView
             android:id="@+id/IPCPlaySurFaceView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="6px"
             android:layout_centerVertical="true" />
 
         <ProgressBar
@@ -31,276 +34,429 @@
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minHeight="@dimen/btn_height"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_marginTop="2dp">
-
-        <TextView
-            android:id="@+id/ipc_control_tv_preset"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/str_preset"
-            android:textColor="@color/secondary_color_ffffff"
-            android:background="@drawable/ipc_item_bg"
-            android:textSize="@dimen/secondary_text" />
-
-        <TextView
-            android:id="@+id/ipc_control_tv_sound"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/str_sound"
-            android:background="@drawable/ipc_item_bg"
-            android:textColor="@color/secondary_color_ffffff"
-            android:textSize="@dimen/secondary_text" />
-
-        <TextView
-            android:id="@+id/ipc_control_tv_resolution"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/str_fluent"
-            android:background="@drawable/ipc_item_bg"
-            android:textColor="@color/secondary_color_ffffff"
-            android:textSize="@dimen/secondary_text" />
-
-        <TextView
-            android:id="@+id/ipc_control_tv_updown"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/str_updown"
-            android:background="@drawable/ipc_item_bg"
-            android:textColor="@color/secondary_color_ffffff"
-            android:textSize="@dimen/secondary_text" />
-
-        <TextView
-            android:id="@+id/ipc_control_tv_photograph"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/str_photograph"
-            android:background="@drawable/ipc_item_bg"
-            android:textColor="@color/secondary_color_ffffff"
-            android:textSize="@dimen/secondary_text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_ipc_ptz_control"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3.5" />
-
-        <RelativeLayout
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginRight="5dp"
-            >
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/btnbg">
-            </FrameLayout>
-            <TextView
-                android:id="@+id/tv_btn_left"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
-                android:background="@drawable/left_btn_bg"
-                android:textColor="@color/secondary_color_097ba5" />
-
-            <TextView
-                android:id="@+id/tv_btn_right"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp"
-                android:background="@drawable/right_btn_bg"
-                android:textColor="@color/secondary_color_097ba5" />
-
-
-            <TextView
-                android:id="@+id/tv_btn_down"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/down_btn_bg"
-                android:textColor="@color/secondary_color_097ba5" />
-
-            <TextView
-                android:id="@+id/tv_btn_up"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/up_btn_bg"
-                android:textColor="@color/secondary_color_097ba5"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="12dp"
-                />
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginRight="10dp"
             android:orientation="vertical">
-
+            <!--灰色操作按钮-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/btn_height"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
                 android:paddingRight="5dp">
-
-                <ImageView
-                    android:id="@+id/ipc_control_tv_zoomadd"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:gravity="right"
-                    android:text="@string/str_add"
-                    android:src="@drawable/add_btn_bg"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/main_title" />
-
-                <TextView
+                <!--预置顶-->
+                <LinearLayout
+                    android:id="@+id/ll_control_tv_preset"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/str_zoom"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/secondary_text" />
+                    android:background="@drawable/ipc_item_bg"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ipc_control_tv_zoomreduce"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="left"
-                    android:src="@drawable/jian_btn_bg"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/main_title" />
+                    <ImageView
+                        android:id="@+id/ipc_control_tv_preset"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/preset_icon"
+                        android:textColor="@color/secondary_color_ffffff"
+                        android:textSize="@dimen/secondary_text" />
+                </LinearLayout>
+                <!--声音开关-->
+                <LinearLayout
+                    android:id="@+id/ll_control_tv_sound"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ipc_item_bg"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/ipc_control_tv_sound"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/sound_icon" />
+                </LinearLayout>
+                <!--视频清晰度-->
+                <LinearLayout
+                    android:id="@+id/ll_control_tv_resolution"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ipc_item_bg"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ipc_control_tv_resolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ipc_item_bg"
+                        android:gravity="center"
+                        android:text="@string/str_fluent"
+                        android:textColor="@color/secondary_color_ffffff"
+                        android:textSize="@dimen/secondary_text" />
+                </LinearLayout>
+                <!--上下左右-->
+                <LinearLayout
+                    android:id="@+id/ll_control_tv_updown"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ipc_item_bg"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ipc_control_tv_updown"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/updown_icon" />
+                </LinearLayout>
+                <!--拍照-->
+                <LinearLayout
+                    android:id="@+id/ll_control_tv_photograph"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ipc_item_bg"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ipc_control_tv_photograph"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/photograph_icon" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-
-                <ImageView
-                    android:id="@+id/ipc_control_tv_focusingadd"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:gravity="right"
-                    android:src="@drawable/add_btn_bg"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/main_title" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
+                    android:background="@color/secondary_color_999999"
                     android:gravity="center"
-                    android:text="@string/str_focusing"
-                    android:textColor="@color/secondary_color_097ba5"
+                    android:text="@string/str_preset"
+                    android:textColor="@color/secondary_color_ffffff"
                     android:textSize="@dimen/secondary_text" />
 
-                <ImageView
-                    android:id="@+id/ipc_control_tv_focusingreduce"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                <TextView
+                    android:id="@+id/tv_sound"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:gravity="left"
-                    android:text="@string/str_reduce"
-                    android:src="@drawable/jian_btn_bg"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/main_title" />
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/secondary_color_999999"
+                    android:gravity="center"
+                    android:text="@string/str_sound"
+                    android:textColor="@color/secondary_color_ffffff"
+                    android:textSize="@dimen/secondary_text" />
 
+                <TextView
+                    android:id="@+id/tv_resolution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/secondary_color_999999"
+                    android:gravity="center"
+                    android:text="@string/str_fluent"
+                    android:textColor="@color/secondary_color_ffffff"
+                    android:textSize="@dimen/secondary_text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/secondary_color_999999"
+                    android:gravity="center"
+                    android:text="@string/str_updown"
+                    android:textColor="@color/secondary_color_ffffff"
+                    android:textSize="@dimen/secondary_text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/secondary_color_999999"
+                    android:gravity="center"
+                    android:text="@string/str_photograph"
+                    android:textColor="@color/secondary_color_ffffff"
+                    android:textSize="@dimen/secondary_text" />
             </LinearLayout>
 
+
+            <!--底部操作按钮-->
+            <LinearLayout
+                android:id="@+id/ll_ipc_ptz_control"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/caozuokongjian_bg"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp">
+
+                        <FrameLayout
+                            android:id="@+id/fl_center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/btn_bg"></FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tv_btn_left"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/fl_center"
+                            android:background="@drawable/left_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_btn_right"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/fl_center"
+                            android:background="@drawable/right_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+
+                        <TextView
+                            android:id="@+id/tv_btn_down"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_below="@+id/fl_center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/down_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_btn_up"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_above="@+id/fl_center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/up_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/secondary_color_cccccc" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_zoomadd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:gravity="right"
+                            android:src="@drawable/add_btn_bg"
+                            android:text="@string/str_add"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_zoom"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/secondary_text" />
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_zoomreduce"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:src="@drawable/jian_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_focusingadd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:gravity="right"
+                            android:src="@drawable/add_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_focusing"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/secondary_text" />
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_focusingreduce"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:src="@drawable/jian_btn_bg"
+                            android:text="@string/str_reduce"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_irisadd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:gravity="right"
+                            android:src="@drawable/add_btn_bg"
+                            android:text="@string/str_add"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_iris"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/secondary_text" />
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_irisreduce"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:src="@drawable/jian_btn_bg"
+                            android:text="@string/str_reduce"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--底部操作按钮-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-
-                <ImageView
-                    android:id="@+id/ipc_control_tv_irisadd"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:gravity="right"
-                    android:text="@string/str_add"
-                    android:src="@drawable/add_btn_bg"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/main_title" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/str_iris"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:textSize="@dimen/secondary_text" />
-
-                <ImageView
-                    android:id="@+id/ipc_control_tv_irisreduce"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="left"
-                    android:text="@string/str_reduce"
-                    android:textColor="@color/secondary_color_097ba5"
-                    android:src="@drawable/jian_btn_bg"
-                    android:textSize="@dimen/main_title" />
-
-            </LinearLayout>
-
+                android:layout_height="160dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/caozuokongjian_bg"
+                android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

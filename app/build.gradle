@@ -22,8 +22,8 @@ android {
         minSdkVersion 15
 
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
@@ -54,6 +54,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'org.apache:apache:18'
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
     //okhttp网络库
@@ -68,6 +70,7 @@ dependencies {
     compile files('src/main/libs/jackson-core-asl-1.8.9.jar')
     compile files('src/main/libs/jackson-mapper-asl-1.8.9.jar')
     compile files('src/main/libs/universal-image-loader-1.9.3.jar')
+    compile files('src/main/libs/jna.jar')
     compile project(':slidingmenu_library-master')
 
     compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9

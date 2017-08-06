@@ -1,5 +1,6 @@
 package com.lj.cameracontroller.constant;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -24,6 +25,9 @@ public class UserApi {
     public static final String LOGIN_USER_PWD = "PassWord";  //用户密码
     public static final  String USERINFOR="userInfor";  //用户信息
     public static final String ISFORGETPWD="IsForgetpwd"; //是否记住密码
+    public static int notificationId = 0; //nofification唯一标识
+    public static File file=null; //更新文件
+
 
     //注销接口
     public static final String LOGIN_OUT = "User/LoginOut";
@@ -35,5 +39,8 @@ public class UserApi {
     public static final String IPC_INFO=URL+"api/mt/ipc_info.aspx";
 
     public static final  String MAINWEBURL = URL+"/apps/mt/index.aspx";
+
+    //版本更新
+    public static  final  String UPDATA=URL+"api/mt/app_info.aspx";
 
 }

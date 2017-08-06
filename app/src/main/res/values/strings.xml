@@ -31,5 +31,8 @@
     <string name="str_btn_down">ᐁ</string>
     <string name="str_btn_left">ᐊ</string>
     <string name="str_btn_right">ᐅ</string>
-
+    <string name="updata_service_error_tip">下载更新文件失败</string>
+    <string name="str_del">删除</string>
+    <string name="str_yes">确定</string>
+    <string name="str_no_permision">没有设备操作权限，请允许程序的操作权限</string>
 </resources>

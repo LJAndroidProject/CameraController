@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/alertdialog_width"
+    android:layout_height="@dimen/alertdialog_height"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="@dimen/alertdialog_width"
+        android:layout_height="@dimen/alertdialog_height"
+        style="?AlertDialogTheme"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_btn"
+        android:textSize="@dimen/majority_text"
+        android:textColor="@color/secondary_color_333333"
+        android:gravity="center"
+        android:text="这是提示内容"/>
+        <TextView
+            android:id="@+id/line_tv"
+            android:layout_below="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_color_cccccc"/>
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="@dimen/secondary_text"
+            android:paddingRight="@dimen/secondary_text"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/bt_no"
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="@dimen/btn_height"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:textColor="@color/secondary_color_333333"
+                android:text="@string/str_cancel"/>
+
+            <Button
+                android:id="@+id/bt_yes"
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="@dimen/btn_height"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:textColor="@color/secondary_color_333333"
+                android:text="@string/str_del"/>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/secondary_color_cccccc"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

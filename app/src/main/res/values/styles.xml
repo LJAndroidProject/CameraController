@@ -32,4 +32,49 @@
         <item name="android:textColor">@color/secondary_color_333333</item>
         <item name="android:textSize">@dimen/secondary_text</item>
     </style>
+
+    <!-- 大型字体样式 -->
+    <style name="large_black_text_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/transparent</item>
+    </style>
+    <!-- 小型字体样式 -->
+    <style name="small_black_text_style">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/transparent</item>
+    </style>
+
+    <!--dialog styles-->
+    <style name="Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+    </style>
+    <!--通用提示框样式-->
+    <style name="AlertDialogprompt">
+        <item name="android:background">@drawable/alertdialog_bg</item>
+    </style>
+
+    <!--小圆角白底带边框类型按钮，例如：发表类型按钮-->
+    <style name="SmallFilletWhiteButton">
+        <!--<item name="android:text">@string/publish</item>-->
+        <item name="android:textSize">@dimen/majority_text</item>
+        <item name="android:textColor">@color/publish_button_textcolor</item>
+        <item name="android:background">@drawable/publish_button_bg</item>
+        <!--<item name="android:layout_width">@dimen/publish_button_width</item>-->
+        <!--<item name="android:layout_height">@dimen/publish_button_height</item>-->
+    </style>
+
+    <!--小圆角深蓝色类型按钮， 例如：发送类型按钮-->
+    <style name="SmallFilletNavyBlueButton">
+        <!--<item name="android:text">@string/send</item>-->
+        <item name="android:textSize">@dimen/main_title</item>
+        <item name="android:textColor">@color/secondary_color_ffffff</item>
+        <item name="android:background">@drawable/send_button_bg</item>
+        <!--<item name="android:layout_width">@dimen/send_button_width</item>-->
+        <!--<item name="android:layout_height">@dimen/send_button_height</item>-->
+    </style>
 </resources>

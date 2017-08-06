@@ -85,14 +85,15 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     private SurfaceView IPCSurfaceView;
     private ProgressBar IPCPro;
     private IPCLoginInfoResp ipcLoginInfoResponse;
-    private TextView tvpreset, tvSound, tvresolution, tvUpDown, tvphotograph, tvUp,tvDown,tvLeft,tvRight;
-    private ImageView tvZoomAdd,tvZoomReduce,tvFocusingAdd,tvFocusingReduce,tvIrisAdd,tvIrisReduce;
+    private TextView  tvresolution,tvUp,tvDown,tvLeft,tvRight,tv_sound,tv_resolution;
+    private ImageView tvZoomAdd,tvZoomReduce,tvFocusingAdd,tvFocusingReduce,tvIrisAdd,tvIrisReduce,tvpreset, tvSound, tvUpDown, tvphotograph;
     private LinearLayout ptzControl;
     private DeviceListEntity.DeviceEntity IPCDeviceData;
     private UserInfo userInfo = null;
     private String userId = "";
     private String accessToken = "";
     private PresetPupAdapter presetPupAdapter;
+    private LinearLayout llpreset,llSound,llResolution,llUpDowm,llPhotograph;
 
     private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;//设备参数
 
@@ -199,11 +200,18 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         tvTitle.setPadding((int) getResources().getDimension(R.dimen.title_bar_backimage_width),0,0,0);
         IPCSurfaceView = (SurfaceView) findViewById(R.id.IPCPlaySurFaceView);
         IPCPro = (ProgressBar) findViewById(R.id.IPCPlayPro);
-        tvpreset = (TextView) findViewById(R.id.ipc_control_tv_preset);
-        tvSound = (TextView) findViewById(R.id.ipc_control_tv_sound);
+        llpreset = (LinearLayout) findViewById(R.id.ll_control_tv_preset);
+        tvpreset = (ImageView) findViewById(R.id.ipc_control_tv_preset);
+        llSound = (LinearLayout) findViewById(R.id.ll_control_tv_sound);
+        tvSound = (ImageView) findViewById(R.id.ipc_control_tv_sound);
+        tv_sound = (TextView) findViewById(R.id.tv_sound);
+        llResolution = (LinearLayout) findViewById(R.id.ll_control_tv_resolution);
         tvresolution = (TextView) findViewById(R.id.ipc_control_tv_resolution);
-        tvUpDown = (TextView) findViewById(R.id.ipc_control_tv_updown);
-        tvphotograph= (TextView) findViewById(R.id.ipc_control_tv_photograph);
+        tv_resolution = (TextView) findViewById(R.id.tv_resolution);
+        llUpDowm = (LinearLayout) findViewById(R.id.ll_control_tv_updown);
+        tvUpDown = (ImageView) findViewById(R.id.ipc_control_tv_updown);
+        llPhotograph= (LinearLayout) findViewById(R.id.ll_control_tv_photograph);
+        tvphotograph= (ImageView) findViewById(R.id.ipc_control_tv_photograph);
         tvZoomAdd = (ImageView) findViewById(R.id.ipc_control_tv_zoomadd);
         tvZoomReduce = (ImageView) findViewById(R.id.ipc_control_tv_zoomreduce);
         tvFocusingAdd = (ImageView) findViewById(R.id.ipc_control_tv_focusingadd);
@@ -216,11 +224,17 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         tvRight = (TextView) findViewById(R.id.tv_btn_right);
         ptzControl = (LinearLayout) findViewById(R.id.ll_ipc_ptz_control);
 
-        tvpreset.setOnClickListener(this);
-        tvSound.setOnClickListener(this);
-        tvresolution.setOnClickListener(this);
-        tvUpDown.setOnClickListener(this);
-        tvphotograph.setOnClickListener(this);
+//        tvpreset.setOnClickListener(this);
+//        tvSound.setOnClickListener(this);
+//        tvresolution.setOnClickListener(this);
+//        tvUpDown.setOnClickListener(this);
+//        tvphotograph.setOnClickListener(this);
+
+        llpreset.setOnClickListener(this);
+        llSound.setOnClickListener(this);
+        llResolution.setOnClickListener(this);
+        llUpDowm.setOnClickListener(this);
+        llPhotograph.setOnClickListener(this);
 
         tvUp.setOnTouchListener(this);
         tvDown.setOnTouchListener(this);
@@ -681,7 +695,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     public void onClick(View view) {
         int viewId = view.getId();
         NET_DVR_PRESET_NAME[] struPresetName = null;
-        if(viewId == R.id.ipc_control_tv_preset){//预置点按钮
+        if(viewId == R.id.ll_control_tv_preset){//预置点按钮
             byte[] arrayOutBuf = new byte[8*1024];
             INT_PTR intPtr = new INT_PTR();
             String strInput = new String("<PTZAbility >" +
@@ -741,31 +755,35 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                 Toast.makeText(this,"预置点获取失败",Toast.LENGTH_LONG).show();
             }
 
-        }else if(viewId == R.id.ipc_control_tv_sound){//声音按钮
+        }else if(viewId == R.id.ll_control_tv_sound){//声音按钮
             if (0 == soundType){
-                tvSound.setText(R.string.str_sound);
+                tvSound.setImageResource(R.mipmap.sound_icon);
+                tv_sound.setText(R.string.str_sound);
                 Player.getInstance().playSound(m_iPort);
                 soundType = 1;
             }else if(1 == soundType){
-                tvSound.setText(R.string.str_mute);
+                tvSound.setImageResource(R.mipmap.sound_up);
+                tv_sound.setText(R.string.str_mute);
                 Player.getInstance().stopSound();
                 soundType = 0;
             }
-        }else if(viewId == R.id.ipc_control_tv_resolution){//分辨率按钮
+        }else if(viewId == R.id.ll_control_tv_resolution){//分辨率按钮
             if(0 == resolutionType){//点击为高清播放时
                 tvresolution.setText(R.string.str_fluent);
+                tv_resolution.setText(R.string.str_fluent);
                 resolutionType = 1;
                 StopPreview();
                 StartPreview();
             }else if(1 == resolutionType){//点击为流程播放时
                 tvresolution.setText(R.string.str_hightdifinition);
+                tv_resolution.setText(R.string.str_hightdifinition);
                 resolutionType = 0;
                 StopPreview();
                 StartPreview();
             }
-        }else if(viewId == R.id.ipc_control_tv_updown){//上下 视频翻转按钮
+        }else if(viewId == R.id.ll_control_tv_updown){//上下 视频翻转按钮
 
-        }else if(viewId == R.id.ipc_control_tv_photograph){//拍照按钮
+        }else if(viewId == R.id.ll_control_tv_photograph){//拍照按钮
             NET_DVR_JPEGPARA strJpeg = new  NET_DVR_JPEGPARA();
             strJpeg.wPicQuality = 0xff;
             strJpeg.wPicSize = 2;

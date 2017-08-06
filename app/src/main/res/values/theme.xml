@@ -9,6 +9,13 @@
 
         <!--大圆角按钮样式 比如登录、下一步等-->
         <item name="LargeFilletButton">@style/LargeFilletButton</item>
+        <!--dialog styles-->
+        <item name="AlertDialogTheme">@style/AlertDialogprompt</item>
+        <!--小圆角白底带边框类型按钮，例如：发表类型按钮-->
+        <item name="SmallFilletWhiteButton">@style/SmallFilletWhiteButton</item>
+        <!--小圆角深蓝色类型按钮， 例如：发送类型按钮-->
+        <item name="SmallFilletNavyBlueButton">@style/SmallFilletNavyBlueButton</item>
     </style>
+
 
 </resources>

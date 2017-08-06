@@ -22,6 +22,7 @@
     <color name="filter_menu_01000000">#01000000</color>
     <color name="white_trans_50">#55000000</color>
     <color name="backgroud_color">#f6f6f6</color>
+    <color name="transparent">#000000</color>
 
 
 </resources>

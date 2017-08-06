@@ -27,7 +27,7 @@
         <!--左上角文字-->
         <attr name="leftText" format="string"></attr>
         <!--标题内容-->
-        <attr name="titleContent" format="string"/>
+        <attr name="titleContent" format="string" />
         <!--右上角图片-->
         <attr name="rightImage" format="reference"></attr>
         <!--右上角图片2-->
@@ -39,4 +39,12 @@
         <!--是否拦截返回按钮-->
         <attr name="interceptOrReturn" format="boolean"></attr>
     </declare-styleable>
+
+    <declare-styleable name="QLTheme">
+        <!--对话框类-->
+        <attr name="AlertDialogTheme" format="reference" />
+        <attr name="SmallFilletWhiteButton" format="reference" />
+        <attr name="SmallFilletNavyBlueButton" format="reference" />
+    </declare-styleable>
+
 </resources>
