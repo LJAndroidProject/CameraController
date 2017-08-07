@@ -60,6 +60,7 @@ public class MainWebViewActivity extends BaseActivity{
     private MyDialog dialog;
     private final int UPDATE_VERSION = 0 ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

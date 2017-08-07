@@ -68,6 +68,7 @@ public class VersionInforActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_versioninfor);
         initView();
         initData();
+
     }
 
     public void initView() {
