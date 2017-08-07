@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.lj.cameracontroller.R;
+import com.lj.cameracontroller.utils.Logger;
 
 
 /**
@@ -93,7 +94,9 @@ public class MyAlertDialog extends AlertDialog implements View.OnClickListener {
 
         if (content != null) {
             content_tv.setText(content);
+            Logger.e("MyAlertDialog",""+content);
         }
+        Logger.e("MyAlertDialog",""+content);
         return this;
     }
 
@@ -139,6 +142,7 @@ public class MyAlertDialog extends AlertDialog implements View.OnClickListener {
         getWindow()
                 .clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         setContentView(view);
+        Logger.e("MyAlertDialog","路过一波");
     }
 
     /**

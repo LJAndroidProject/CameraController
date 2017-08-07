@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -56,6 +58,7 @@ public class MainWebViewActivity extends BaseActivity{
     private UpdateEntity data;
     private MyAlertDialog myAlertDialog;
     private MyDialog dialog;
+    private final int UPDATE_VERSION = 0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +138,54 @@ public class MainWebViewActivity extends BaseActivity{
 
     }
 
+    private Handler myHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    if (data.getResult().getForce_update() == 1) { //强制更新
+                        myAlertDialog.GeneralTipsDialog()
+                                .setButtonContent("确认", "取消")
+                                        .setTitleTip("升级提示")
+                                .setMsg(data.getResult().getDescription())
+                                .setNoButtonGone(true)
+                                .setPositiveButton(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        myAlertDialog.dismiss();
+                                        entryOnlineUpdate();
+                                    }
+                                });
+                        myAlertDialog.show();
+                    } else {
+                        Logger.e(TAG,"myAlertDialog:"+myAlertDialog);
+                        myAlertDialog.GeneralTipsDialog()
+                                .setButtonContent("确认", "取消")
+                                        .setTitleTip("升级提示")
+                                .setMsg(data.getResult().getDescription())
+                                .setPositiveButton(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        myAlertDialog.dismiss();
+                                        entryOnlineUpdate();
+                                    }
+                                })
+                                .setNegativeButton(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        myAlertDialog.dismiss();
+                                    }
+                                });
+                        Logger.e(TAG,"抛异常？？？？？？？:"+myAlertDialog);
+                        myAlertDialog.show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     /**
      * 检测是否需要更新
@@ -160,40 +211,11 @@ public class MainWebViewActivity extends BaseActivity{
                         StorageFactory.getInstance().getSharedPreference(MainWebViewActivity.this).saveString("apkurl", data.getResult().getPath()); //存储下载地址
                         Log.e("","本地版本信息"+AppSettings.getAppVersionNumber(MainWebViewActivity.this));
                         if (Version > AppSettings.getAppVersionNumber(MainWebViewActivity.this)) {
-                            if (data.getResult().getForce_update() == 1) { //强制更新
-                                myAlertDialog.ValidationOperationDialog()
-                                        .setButtonContent("确认", "取消")
-                                        .setTitleTip("升级提示")
-                                        .setMsg(data.getResult().getDescription())
-                                        .setNoButtonGone(true)
-                                        .setPositiveButton(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                myAlertDialog.dismiss();
-                                                entryOnlineUpdate();
-                                            }
-                                        });
-                                myAlertDialog.show();
-                            } else {
-                                myAlertDialog.ValidationOperationDialog()
-                                        .setButtonContent("确认", "取消")
-                                        .setTitleTip("升级提示")
-                                        .setMsg(data.getResult().getDescription())
-                                        .setPositiveButton(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                myAlertDialog.dismiss();
-                                                entryOnlineUpdate();
-                                            }
-                                        })
-                                        .setNegativeButton(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                myAlertDialog.dismiss();
-                                            }
-                                        });
-                                myAlertDialog.show();
-                            }
+                            Message message = Message.obtain();
+                            message.what = UPDATE_VERSION;
+
+                            myHandler.sendMessage(message);
+
                         }
                     }
                 }

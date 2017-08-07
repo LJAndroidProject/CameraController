@@ -131,6 +131,7 @@ public class HttpUtils {
                     callBack.onFailure(httpRequest, e);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Logger.e("HttpUtils", e.toString());
                 }
                 int count = callsList.indexOfValue(call);
                 Logger.e("HttpUtils", "count:" + count);
