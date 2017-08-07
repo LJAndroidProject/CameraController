@@ -9,7 +9,7 @@
     <dimen name="secondary_text">16dp</dimen>
     <dimen name="small_text">14dp</dimen>
     <dimen name="dianzan_button_width">26px</dimen>
-    <dimen name="alertdialog_width">560px</dimen>
+    <dimen name="alertdialog_width">240dp</dimen>
     <dimen name="alertdialog_height">347px</dimen>
     <dimen name="marg_top">40px</dimen>
     <dimen name="btn_height">40dp</dimen>

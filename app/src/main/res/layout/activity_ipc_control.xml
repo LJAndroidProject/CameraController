@@ -88,7 +88,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:src="@mipmap/sound_icon" />
+                        android:src="@mipmap/sound_up" />
                 </LinearLayout>
                 <!--视频清晰度-->
                 <LinearLayout
@@ -180,7 +180,7 @@
                     android:layout_weight="1"
                     android:background="@color/secondary_color_999999"
                     android:gravity="center"
-                    android:text="@string/str_sound"
+                    android:text="@string/str_mute"
                     android:textColor="@color/secondary_color_ffffff"
                     android:textSize="@dimen/secondary_text" />
 

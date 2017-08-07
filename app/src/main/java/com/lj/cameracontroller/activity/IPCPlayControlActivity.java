@@ -116,7 +116,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
      * */
     private int resolutionType = 1;
     /** soundType为声音状态 0=静音 1=开启声音*/
-    private int soundType = 1;
+    private int soundType = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -253,6 +253,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         RelativeLayout.LayoutParams relativeParams =(RelativeLayout.LayoutParams) IPCSurfaceView.getLayoutParams();
         relativeParams.height = width*9/16;
         IPCSurfaceView.setLayoutParams(relativeParams);
+        Player.getInstance().stopSound();
 //        LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
 //        result.put("ipc_sn","SN0123456789");
 //        result.put("user_name","admin");
