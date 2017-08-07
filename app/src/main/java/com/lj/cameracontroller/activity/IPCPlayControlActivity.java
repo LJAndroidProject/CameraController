@@ -910,6 +910,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
             return true;
         }catch (Exception e){
 
+
             return false;
         }
     }
