@@ -39,6 +39,7 @@ public class UpdateEntity implements Serializable{
 
     public class dataEntity implements Serializable{
         private int type=-1;                //1=android  2=ios 3=pc
+        private int server_status=-1;                //ios所需
         private int version=0;             //最新版本号
         private  String version_name="";  //最新版本号名称
         private int version_type=0;    //版本类型，1正式，0测试
@@ -111,7 +112,13 @@ public class UpdateEntity implements Serializable{
             this.publish_date = publish_date;
         }
 
+        public int getServer_status() {
+            return server_status;
+        }
 
+        public void setServer_status(int server_status) {
+            this.server_status = server_status;
+        }
     }
 }
 

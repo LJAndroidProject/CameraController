@@ -15,6 +15,7 @@
         <item name="SmallFilletWhiteButton">@style/SmallFilletWhiteButton</item>
         <!--小圆角深蓝色类型按钮， 例如：发送类型按钮-->
         <item name="SmallFilletNavyBlueButton">@style/SmallFilletNavyBlueButton</item>
+        <item name="textSizeSmall">@dimen/small_text</item>
     </style>
 
 

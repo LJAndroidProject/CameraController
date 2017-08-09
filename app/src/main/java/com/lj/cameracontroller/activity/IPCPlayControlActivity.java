@@ -50,6 +50,7 @@ import com.lj.cameracontroller.utils.HttpUtils;
 import com.lj.cameracontroller.utils.Logger;
 import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.utils.TimeUtils;
+import com.lj.cameracontroller.view.ActionSheetDialog;
 import com.lj.cameracontroller.view.PlaySurfaceView;
 import com.lj.cameracontroller.view.PresetListPupwindow;
 import com.lj.cameracontroller.view.TitleView;
@@ -117,6 +118,8 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     private int resolutionType = 1;
     /** soundType为声音状态 0=静音 1=开启声音*/
     private int soundType = 0;
+
+      private ActionSheetDialog SheetDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -769,19 +772,38 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                 soundType = 0;
             }
         }else if(viewId == R.id.ll_control_tv_resolution){//分辨率按钮
-            if(0 == resolutionType){//点击为高清播放时
-                tvresolution.setText(R.string.str_fluent);
-                tv_resolution.setText(R.string.str_fluent);
-                resolutionType = 1;
-                StopPreview();
-                StartPreview();
-            }else if(1 == resolutionType){//点击为流程播放时
-                tvresolution.setText(R.string.str_hightdifinition);
-                tv_resolution.setText(R.string.str_hightdifinition);
-                resolutionType = 0;
-                StopPreview();
-                StartPreview();
-            }
+            SheetDialog=new ActionSheetDialog(IPCPlayControlActivity.this)
+                    .builder()
+                    .setCancelable(true)
+                    .setCanceledOnTouchOutside(true)
+                    .addSheetItem(getResources().getString(R.string.str_fluent), ActionSheetDialog.SheetItemColor.Blue,
+                            new ActionSheetDialog.OnSheetItemClickListener() {
+                                @Override
+                                public void onClick(int which) {
+                                    tvresolution.setText(R.string.str_fluent);
+                                    tv_resolution.setText(R.string.str_fluent);
+                                    resolutionType = 1;
+                                    StopPreview();
+                                    StartPreview();
+                                }
+                            })
+                    .addSheetItem(getResources().getString(R.string.str_hightdifinition), ActionSheetDialog.SheetItemColor.Blue,
+                            new ActionSheetDialog.OnSheetItemClickListener() {
+                                @Override
+                                public void onClick(int which) {
+                                    tvresolution.setText(R.string.str_hightdifinition);
+                                    tv_resolution.setText(R.string.str_hightdifinition);
+                                    resolutionType = 0;
+                                    StopPreview();
+                                    StartPreview();
+                                }
+                            });
+            SheetDialog.show();
+//            if(0 == resolutionType){//点击为高清播放时
+//
+//            }else if(1 == resolutionType){//点击为流程播放时
+//
+//            }
         }else if(viewId == R.id.ll_control_tv_updown){//上下 视频翻转按钮
 
         }else if(viewId == R.id.ll_control_tv_photograph){//拍照按钮

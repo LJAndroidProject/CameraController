@@ -4,6 +4,7 @@
     <attr name="HomeBackAndRightButtonTheme" format="reference" />
     <attr name="LargeFilletButton" format="reference" />
 
+
     <declare-styleable name="MsgView">
         <!-- 圆角矩形背景色 -->
         <attr name="mv_backgroundColor" format="color" />
@@ -45,6 +46,7 @@
         <attr name="AlertDialogTheme" format="reference" />
         <attr name="SmallFilletWhiteButton" format="reference" />
         <attr name="SmallFilletNavyBlueButton" format="reference" />
+        <attr name="textSizeSmall" format="reference" />
     </declare-styleable>
 
 </resources>

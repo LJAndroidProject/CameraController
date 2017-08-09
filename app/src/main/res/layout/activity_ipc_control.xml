@@ -87,7 +87,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="10dp"
                         android:src="@mipmap/sound_up" />
                 </LinearLayout>
                 <!--视频清晰度-->
