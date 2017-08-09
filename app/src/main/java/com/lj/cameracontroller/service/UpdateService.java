@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.lj.cameracontroller.R;
@@ -176,6 +177,7 @@ public class UpdateService extends Service {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg != null) {
+                Log.e("下载时信息","msg.what="+msg.what);
                 switch (msg.what) {
                     case 0:
                         Toast.makeText(context, msg.obj.toString(),
@@ -195,6 +197,7 @@ public class UpdateService extends Service {
                         break;
                     case 3:
                         // 更新状态栏上的下载进度信息
+                        Log.e("下载百分比","download_precent="+download_precent);
                         notificationUtil.views.setTextViewText(R.id.tvProcess, "已下载"
                                 + download_precent + "%");
                         notificationUtil.views.setProgressBar(R.id.pbDownload, 100,

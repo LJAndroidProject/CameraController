@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:leftImageVisible="false">
+        app:leftImage="@mipmap/ic_drawer"
+        app:interceptOrReturn="true">
 
     </com.lj.cameracontroller.view.TitleView>
     <WebView

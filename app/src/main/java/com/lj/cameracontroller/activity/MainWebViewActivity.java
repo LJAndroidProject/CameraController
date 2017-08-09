@@ -18,6 +18,7 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lj.cameracontroller.R;
 import com.lj.cameracontroller.base.BaseActivity;
 import com.lj.cameracontroller.base.BaseApplication;
@@ -36,6 +37,8 @@ import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.utils.permissions.PermissionListener;
 import com.lj.cameracontroller.view.MyAlertDialog;
 import com.lj.cameracontroller.view.MyDialog;
+import com.lj.cameracontroller.view.SampleListFragment;
+import com.lj.cameracontroller.view.SampleListFragment2;
 import com.lj.cameracontroller.view.TitleView;
 
 import java.io.IOException;
@@ -59,6 +62,8 @@ public class MainWebViewActivity extends BaseActivity{
     private MyAlertDialog myAlertDialog;
     private MyDialog dialog;
     private final int UPDATE_VERSION = 0 ;
+    private SlidingMenu menu;
+    private SampleListFragment2 fragment;
 
 
     @Override
@@ -74,6 +79,49 @@ public class MainWebViewActivity extends BaseActivity{
         titleView=(TitleView) findViewById(R.id.tv_top);
         titleView.setTv_title(getResources().getString(R.string.str_mainHome));
         webViewHome=(WebView) findViewById(R.id.webViewHome);
+        fragment = new SampleListFragment2();
+        // 设置滑动菜单的属性值
+        menu = new SlidingMenu(this);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        // 设置滑动菜单的视图界面
+        menu.setMenu(R.layout.menu_frame);
+//        menu.showMenu();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.menu_frame, fragment).commit();
+
+        //TODO 点击右滑菜单中的item
+        fragment.setOnItemClickListener(new SampleListFragment2.OnItemClickListener() {
+            @Override
+            public void Onclick(int position) {
+                menu.showContent();
+                switch (position){
+                    case 0:
+                        Intent intent2 =new Intent(MainWebViewActivity.this,VersionInforActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case 1:
+                        Intent intent =new Intent(MainWebViewActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        });
+        //TODO 点击左上角按钮显示右滑菜单
+        titleView.setOnBackClickListener(new TitleView.backOnclickListener() {
+            @Override
+            public void onClick() {
+                menu.showMenu();
+            }
+        });
     }
 
     private void initData(){
@@ -214,7 +262,6 @@ public class MainWebViewActivity extends BaseActivity{
                         if (Version > AppSettings.getAppVersionNumber(MainWebViewActivity.this)) {
                             Message message = Message.obtain();
                             message.what = UPDATE_VERSION;
-
                             myHandler.sendMessage(message);
 
                         }

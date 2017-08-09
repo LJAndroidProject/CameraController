@@ -15,16 +15,14 @@
         android:id="@+id/IPCPlayLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:background="@drawable/ipcplay_bg">
 
         <SurfaceView
             android:id="@+id/IPCPlaySurFaceView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6px"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_margin="6px" />
 
         <ProgressBar
             android:id="@+id/IPCPlayPro"
@@ -46,12 +44,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
-                android:layout_marginTop="2dp"
                 android:gravity="center_vertical"
                 android:minHeight="@dimen/btn_height"
                 android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+                >
                 <!--预置顶-->
                 <LinearLayout
                     android:id="@+id/ll_control_tv_preset"
@@ -66,7 +62,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:padding="10dp"
                         android:src="@mipmap/preset_icon"
                         android:textColor="@color/secondary_color_ffffff"
                         android:textSize="@dimen/secondary_text" />
@@ -126,7 +121,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="10dp"
                         android:src="@mipmap/updown_icon" />
                 </LinearLayout>
                 <!--拍照-->
@@ -145,7 +139,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="10dp"
                         android:src="@mipmap/photograph_icon" />
                 </LinearLayout>
             </LinearLayout>
@@ -156,13 +149,14 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="2dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:background="@color/secondary_color_999999"
                     android:gravity="center"
@@ -211,7 +205,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@color/secondary_color_999999"
@@ -242,10 +236,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.0"
-                    android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:gravity="center">
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -330,12 +324,12 @@
                         android:paddingRight="5dp">
 
                         <ImageView
-                            android:id="@+id/ipc_control_tv_zoomadd"
+                            android:id="@+id/ipc_control_tv_focusingadd"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:gravity="right"
+                            android:padding="5dp"
                             android:src="@drawable/add_btn_bg"
-                            android:text="@string/str_add"
                             android:textColor="@color/secondary_color_097ba5"
                             android:textSize="@dimen/main_title" />
 
@@ -349,51 +343,12 @@
                             android:textSize="@dimen/secondary_text" />
 
                         <ImageView
-                            android:id="@+id/ipc_control_tv_zoomreduce"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="left"
-                            android:src="@drawable/jian_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5"
-                            android:textSize="@dimen/main_title" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-                        <ImageView
-                            android:id="@+id/ipc_control_tv_focusingadd"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:gravity="right"
-                            android:src="@drawable/add_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5"
-                            android:textSize="@dimen/main_title" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/str_focusing"
-                            android:textColor="@color/secondary_color_097ba5"
-                            android:textSize="@dimen/secondary_text" />
-
-                        <ImageView
                             android:id="@+id/ipc_control_tv_focusingreduce"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_marginLeft="5dp"
                             android:gravity="left"
+                            android:padding="5dp"
                             android:src="@drawable/jian_btn_bg"
                             android:text="@string/str_reduce"
                             android:textColor="@color/secondary_color_097ba5"
@@ -412,10 +367,55 @@
                         android:paddingRight="5dp">
 
                         <ImageView
+                            android:id="@+id/ipc_control_tv_zoomadd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:src="@drawable/add_btn_bg"
+                            android:text="@string/str_add"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_focusing"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/secondary_text" />
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_zoomreduce"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:padding="5dp"
+                            android:src="@drawable/jian_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
                             android:id="@+id/ipc_control_tv_irisadd"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:gravity="right"
+                            android:padding="5dp"
                             android:src="@drawable/add_btn_bg"
                             android:text="@string/str_add"
                             android:textColor="@color/secondary_color_097ba5"
@@ -436,6 +436,7 @@
                             android:layout_height="45dp"
                             android:layout_marginLeft="5dp"
                             android:gravity="left"
+                            android:padding="5dp"
                             android:src="@drawable/jian_btn_bg"
                             android:text="@string/str_reduce"
                             android:textColor="@color/secondary_color_097ba5"
