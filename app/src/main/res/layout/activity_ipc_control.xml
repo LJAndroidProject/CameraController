@@ -244,7 +244,9 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="5dp">
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center">
 
                         <FrameLayout
                             android:id="@+id/fl_center"
@@ -310,9 +312,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="1.0"
+                    android:layout_weight="1.1"
                     android:orientation="vertical">
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        ></LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -443,6 +448,10 @@
                             android:textSize="@dimen/main_title" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        ></LinearLayout>
 
                 </LinearLayout>
 
@@ -455,7 +464,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/caozuokongjian_bg"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="horizontal"
+                android:visibility="gone"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 
