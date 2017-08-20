@@ -17,8 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_btn"
-        android:textSize="@dimen/majority_text"
+        android:textSize="@dimen/secondary_text"
         android:textColor="@color/secondary_color_333333"
+        android:layout_margin="@dimen/user_login_input_margin"
         android:gravity="center"
         android:text="这是提示内容"/>
         <TextView
@@ -40,16 +41,6 @@
             android:layout_alignParentBottom="true">
 
             <Button
-                android:id="@+id/bt_no"
-                android:layout_width="0dp"
-                android:layout_weight="1.0"
-                android:layout_height="@dimen/btn_height"
-                android:gravity="center"
-                android:background="@android:color/transparent"
-                android:textColor="@color/secondary_color_333333"
-                android:text="@string/str_cancel"/>
-
-            <Button
                 android:id="@+id/bt_yes"
                 android:layout_width="0dp"
                 android:layout_weight="1.0"
@@ -57,12 +48,24 @@
                 android:gravity="center"
                 android:background="@android:color/transparent"
                 android:textColor="@color/secondary_color_333333"
-                android:text="@string/str_del"/>
+                android:text="@string/str_yes"
+                android:textSize="@dimen/main_title"/>
 
             <TextView
+                android:id="@+id/tv_btnLine"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondary_color_cccccc"/>
+            <Button
+                android:id="@+id/bt_no"
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="@dimen/btn_height"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:textColor="@color/secondary_color_333333"
+                android:text="@string/str_del"
+                android:textSize="@dimen/main_title"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

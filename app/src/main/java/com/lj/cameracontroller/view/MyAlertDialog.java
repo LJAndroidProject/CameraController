@@ -26,6 +26,7 @@ public class MyAlertDialog extends AlertDialog implements View.OnClickListener {
     private View.OnClickListener cancelListener; //取消按钮监听
     private TextView content_tv;   //对话框内容
     private TextView dialog_tip_tv; //对话框标题
+    private TextView tv_btnLine;
 
 
     public MyAlertDialog(Context context) {
@@ -64,6 +65,7 @@ public class MyAlertDialog extends AlertDialog implements View.OnClickListener {
         view= LayoutInflater.from(mContext).inflate(
                 R.layout.layout_alertdialog_validationoperation, null);
         content_tv= (TextView) view.findViewById(R.id.tv_content);
+        tv_btnLine= (TextView) view.findViewById(R.id.tv_btnLine);
         yes_btn= (Button) view.findViewById(R.id.bt_yes);
         no_btn= (Button) view.findViewById(R.id.bt_no);
         yes_btn.setOnClickListener(this);
@@ -131,6 +133,9 @@ public class MyAlertDialog extends AlertDialog implements View.OnClickListener {
     public MyAlertDialog setNoButtonGone(boolean gone){
         if(gone){
             no_btn.setVisibility(View.GONE);
+            if(null!=tv_btnLine){
+                tv_btnLine.setVisibility(View.GONE);
+            }
         }
         return this;
     }

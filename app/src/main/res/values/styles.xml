@@ -30,7 +30,7 @@
 
     <style name="text_black_14">
         <item name="android:textColor">@color/secondary_color_333333</item>
-        <item name="android:textSize">@dimen/secondary_text</item>
+        <item name="android:textSize">@dimen/small_text</item>
     </style>
 
     <!-- 大型字体样式 -->

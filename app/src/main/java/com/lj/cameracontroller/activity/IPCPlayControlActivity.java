@@ -2,9 +2,12 @@ package com.lj.cameracontroller.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -51,6 +54,8 @@ import com.lj.cameracontroller.utils.Logger;
 import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.utils.TimeUtils;
 import com.lj.cameracontroller.view.ActionSheetDialog;
+import com.lj.cameracontroller.view.MyAlertDialog;
+import com.lj.cameracontroller.view.MyDialog;
 import com.lj.cameracontroller.view.PlaySurfaceView;
 import com.lj.cameracontroller.view.PresetListPupwindow;
 import com.lj.cameracontroller.view.TitleView;
@@ -82,7 +87,7 @@ import static android.os.Environment.getExternalStorageDirectory;
 public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolder.Callback , View.OnClickListener, PresetPupAdapter.PresetPupAdapterListener,View.OnTouchListener{
 
     private final String TAG = "IPCPlayControlActivity";
-    private TitleView titleView;
+    public TitleView titleView;
     private SurfaceView IPCSurfaceView;
     private ProgressBar IPCPro;
     private IPCLoginInfoResp ipcLoginInfoResponse;
@@ -120,10 +125,23 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     private int soundType = 0;
 
       private ActionSheetDialog SheetDialog;
+    private MyAlertDialog myAlertDialog;
+    private  String titleContent=""; //标题内容
+    /** 1:竖屏   2:横屏 判断屏幕以旋转的方向 */
+    private int orientation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        orientation=getResources().getConfiguration().orientation;
         setContentView(R.layout.activity_ipc_control);
+        myAlertDialog = new MyAlertDialog(this);
+//        if(1==orientation){
+//            setContentView(R.layout.activity_ipc_control);
+//        }else if(2==orientation){
+//            setContentView(R.layout.activity_ipc_control_land);
+//        }
+
         if (!initeSdk())
         {
 //            this.finish();
@@ -168,6 +186,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
             bundle = intent.getExtras();
             if (null != bundle.getSerializable("data")){
                 IPCDeviceData = (DeviceListEntity.DeviceEntity)bundle.getSerializable("data");
+                titleContent=IPCDeviceData.getGds_name()+"-"+IPCDeviceData.getPdf_name()+"-"+IPCDeviceData.getIpc_name();
                 titleView.setTv_title(IPCDeviceData.getGds_name()+"-"+IPCDeviceData.getPdf_name()+"-"+IPCDeviceData.getIpc_name());
                 getIPCLoginInfo();
             }else{
@@ -176,6 +195,8 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         }
         return true;
     }
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -193,6 +214,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         super.onResume();
         StartPreview();
     }
+
 
     /**初始化界面*/
     private void initView(){
@@ -274,8 +296,35 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
 //        System.out.println(jsonsssss);
 //        IPCLoginResponse resultResponse = gson.fromJson(jsonsssss, IPCLoginResponse.class);
 //        ipcLoginInfoResponse = resultResponse.result;
-    }
 
+        titleView.setrightBtnOnclick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Message message = Message.obtain();
+                message.what = 0;
+                myHandler.sendMessage(message);
+            }
+        });
+    }
+    private Handler myHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    myAlertDialog.ValidationOperationDialog().setMsg(titleContent)
+                            .setNoButtonGone(true)
+                            .setPositiveButton(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    myAlertDialog.dismiss();
+                                }
+                            });
+                    myAlertDialog.show();
+                    break;
+            }
+        }
+    };
 
     private  void getIPCLoginInfo(){
         if (null == userInfo || null == userInfo.getResult()){
@@ -752,26 +801,79 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                 }
             }
             if(null != struPresetName && struPresetName.length> 0){
-                PresetListPupwindow presetListPupwindow = new PresetListPupwindow(this,struPresetName,tvpreset.getWidth(),ptzControl.getHeight());
-                presetListPupwindow.showAsDropDown(tvpreset,0,0);
-                presetPupAdapter = presetListPupwindow.getPresetPupAdapter();
-                presetPupAdapter.setPresetPupAdapterListener(this);
+//                PresetListPupwindow presetListPupwindow = new PresetListPupwindow(this,struPresetName,tvpreset.getWidth(),ptzControl.getHeight());
+//                presetListPupwindow.showAsDropDown(tvpreset,0,0);
+//                presetPupAdapter = presetListPupwindow.getPresetPupAdapter();
+//                presetPupAdapter.setPresetPupAdapterListener(this);
+                SheetDialog=new ActionSheetDialog(IPCPlayControlActivity.this)
+                        .builder()
+                        .setCancelable(true)
+                        .setCanceledOnTouchOutside(true)
+                        .addSheetItem(getResources().getString(R.string.str_yushedian)+1, ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                HCNetSDK.getInstance().NET_DVR_PTZPreset(m_iPlayID, 39, 1);
+                            }})
+                        .addSheetItem(getResources().getString(R.string.str_yushedian)+2, ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                HCNetSDK.getInstance().NET_DVR_PTZPreset(m_iPlayID, 39, 2);
+                            }})
+                        .addSheetItem(getResources().getString(R.string.str_yushedian)+3, ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                HCNetSDK.getInstance().NET_DVR_PTZPreset(m_iPlayID, 39, 3);
+                            }})
+                        .addSheetItem(getResources().getString(R.string.str_yushedian)+4, ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                HCNetSDK.getInstance().NET_DVR_PTZPreset(m_iPlayID, 39, 4);
+                            }})
+                        .addSheetItem(getResources().getString(R.string.str_yushedian)+5, ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                HCNetSDK.getInstance().NET_DVR_PTZPreset(m_iPlayID, 39, 5);
+                            }
+                        });
+                SheetDialog.show();
             }else{
                 Toast.makeText(this,"预置点获取失败",Toast.LENGTH_LONG).show();
             }
 
         }else if(viewId == R.id.ll_control_tv_sound){//声音按钮
-            if (0 == soundType){
-                tvSound.setImageResource(R.mipmap.sound_icon);
-                tv_sound.setText(R.string.str_sound);
-                Player.getInstance().playSound(m_iPort);
-                soundType = 1;
-            }else if(1 == soundType){
-                tvSound.setImageResource(R.mipmap.sound_up);
-                tv_sound.setText(R.string.str_mute);
-                Player.getInstance().stopSound();
-                soundType = 0;
-            }
+            SheetDialog=new ActionSheetDialog(IPCPlayControlActivity.this)
+                    .builder()
+                    .setCancelable(true)
+                    .setCanceledOnTouchOutside(true)
+                    .addSheetItem(getResources().getString(R.string.str_sound), ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                        @Override
+                        public void onClick(int which) {
+                            Player.getInstance().playSound(m_iPort);
+                            tvSound.setImageResource(R.mipmap.sound_icon);
+                            tv_sound.setText(R.string.str_sound);
+                            soundType = 1;
+                        }})
+                    .addSheetItem(getResources().getString(R.string.str_mute), ActionSheetDialog.SheetItemColor.Blue,new ActionSheetDialog.OnSheetItemClickListener() {
+                        @Override
+                        public void onClick(int which) {
+                            tvSound.setImageResource(R.mipmap.sound_up);
+                            tv_sound.setText(R.string.str_mute);
+                            Player.getInstance().stopSound();
+                            soundType = 0;
+
+                        }});
+            SheetDialog.show();
+//            if (0 == soundType){
+//                tvSound.setImageResource(R.mipmap.sound_icon);
+//                tv_sound.setText(R.string.str_sound);
+//                Player.getInstance().playSound(m_iPort);
+//                soundType = 1;
+//            }else if(1 == soundType){
+//                tvSound.setImageResource(R.mipmap.sound_up);
+//                tv_sound.setText(R.string.str_mute);
+//                Player.getInstance().stopSound();
+//                soundType = 0;
+//            }
         }else if(viewId == R.id.ll_control_tv_resolution){//分辨率按钮
             SheetDialog=new ActionSheetDialog(IPCPlayControlActivity.this)
                     .builder()

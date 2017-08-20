@@ -49,7 +49,7 @@ import java.util.List;
  * 登录之后的主web页面
  */
 
-public class MainWebViewActivity extends BaseActivity{
+public class MainWebViewActivity extends BaseActivity {
 
     public static final String TAG = "MainWebViewActivity";
     private TitleView titleView;
@@ -61,7 +61,7 @@ public class MainWebViewActivity extends BaseActivity{
     private UpdateEntity data;
     private MyAlertDialog myAlertDialog;
     private MyDialog dialog;
-    private final int UPDATE_VERSION = 0 ;
+    private final int UPDATE_VERSION = 0;
     private SlidingMenu menu;
     private SampleListFragment2 fragment;
     public static Activity mActiviry;
@@ -75,11 +75,11 @@ public class MainWebViewActivity extends BaseActivity{
         initData();
     }
 
-    private void initView(){
+    private void initView() {
         mActiviry = this;
-        titleView=(TitleView) findViewById(R.id.tv_top);
+        titleView = (TitleView) findViewById(R.id.tv_top);
         titleView.setTv_title(getResources().getString(R.string.str_mainHome));
-        webViewHome=(WebView) findViewById(R.id.webViewHome);
+        webViewHome = (WebView) findViewById(R.id.webViewHome);
         fragment = new SampleListFragment2();
         // 设置滑动菜单的属性值
         menu = new SlidingMenu(this);
@@ -100,15 +100,21 @@ public class MainWebViewActivity extends BaseActivity{
             @Override
             public void Onclick(int position) {
                 menu.showContent();
-                switch (position){
-                    case 0:
-                        Intent intent2 =new Intent(MainWebViewActivity.this,VersionInforActivity.class);
-                        startActivity(intent2);
+                switch (position) {
+                    case 0: //设置
+
                         break;
-                    case 1:
-                        Intent intent =new Intent(MainWebViewActivity.this,LoginActivity.class);
+                    case 1: //注销
+                        Intent intent = new Intent(MainWebViewActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
+                        break;
+                    case 2: //退出
+                        System.exit(0);
+                        break;
+                    case 3:  //版本信息
+                        Intent intent3 = new Intent(MainWebViewActivity.this, VersionInforActivity.class);
+                        startActivity(intent3);
                         break;
                     default:
                         break;
@@ -125,7 +131,7 @@ public class MainWebViewActivity extends BaseActivity{
         });
     }
 
-    private void initData(){
+    private void initData() {
         myAlertDialog = new MyAlertDialog(this);
         dialog = new MyDialog(this, 0);
         this.url = getIntent().getStringExtra("url");
@@ -173,31 +179,33 @@ public class MainWebViewActivity extends BaseActivity{
     }
 
 
-    public class ClickButton{
+    public class ClickButton {
         private Activity act;
-        public ClickButton(Activity activity){
-            act=activity;
+
+        public ClickButton(Activity activity) {
+            act = activity;
         }
+
         @android.webkit.JavascriptInterface
-        public void ClickBtn(){
-            Logger.e("aaaa","进来了吗");
-            Intent intent =new Intent(MainWebViewActivity.this,DeviceListActivity.class);
+        public void ClickBtn() {
+            Logger.e("aaaa", "进来了吗");
+            Intent intent = new Intent(MainWebViewActivity.this, DeviceListActivity.class);
             startActivity(intent);
 //            finish();
         }
 
     }
 
-    private Handler myHandler = new Handler(){
+    private Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
                     if (data.getResult().getForce_update() == 1) { //强制更新
                         myAlertDialog.GeneralTipsDialog()
                                 .setButtonContent("确认", "取消")
-                                        .setTitleTip("升级提示")
+                                .setTitleTip("升级提示")
                                 .setMsg(data.getResult().getDescription())
                                 .setNoButtonGone(true)
                                 .setPositiveButton(new View.OnClickListener() {
@@ -209,10 +217,10 @@ public class MainWebViewActivity extends BaseActivity{
                                 });
                         myAlertDialog.show();
                     } else {
-                        Logger.e(TAG,"myAlertDialog:"+myAlertDialog);
+                        Logger.e(TAG, "myAlertDialog:" + myAlertDialog);
                         myAlertDialog.GeneralTipsDialog()
                                 .setButtonContent("确认", "取消")
-                                        .setTitleTip("升级提示")
+                                .setTitleTip("升级提示")
                                 .setMsg(data.getResult().getDescription())
                                 .setPositiveButton(new View.OnClickListener() {
                                     @Override
@@ -227,7 +235,7 @@ public class MainWebViewActivity extends BaseActivity{
                                         myAlertDialog.dismiss();
                                     }
                                 });
-                        Logger.e(TAG,"抛异常？？？？？？？:"+myAlertDialog);
+                        Logger.e(TAG, "抛异常？？？？？？？:" + myAlertDialog);
                         myAlertDialog.show();
                     }
                     break;
@@ -259,7 +267,7 @@ public class MainWebViewActivity extends BaseActivity{
                     if (null != data && data.getCode() == 1 && null != data.getResult()) { //获取数据成功
                         int Version = data.getResult().getVersion();
                         StorageFactory.getInstance().getSharedPreference(MainWebViewActivity.this).saveString("apkurl", data.getResult().getPath()); //存储下载地址
-                        Log.e("","本地版本信息"+AppSettings.getAppVersionNumber(MainWebViewActivity.this));
+                        Log.e("", "本地版本信息" + AppSettings.getAppVersionNumber(MainWebViewActivity.this));
                         if (Version > AppSettings.getAppVersionNumber(MainWebViewActivity.this)) {
                             Message message = Message.obtain();
                             message.what = UPDATE_VERSION;
@@ -291,15 +299,15 @@ public class MainWebViewActivity extends BaseActivity{
         }
     };
 
-    private void entryOnlineUpdate(){
+    private void entryOnlineUpdate() {
         String[] pers = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
 //        requestRuntimePermission(MainWebViewActivity.this,pers, new PermissionListener() {
 //            @Override
 //            public void onGranted() {
-                Intent it = new Intent(MainWebViewActivity.this,UpdateService.class);
-                startService(it);
-                bindService(it, conn, Context.BIND_AUTO_CREATE);
+        Intent it = new Intent(MainWebViewActivity.this, UpdateService.class);
+        startService(it);
+        bindService(it, conn, Context.BIND_AUTO_CREATE);
 //            }
 //
 //            @Override

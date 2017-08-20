@@ -32,7 +32,7 @@ public class TitleView extends LinearLayout {
     private LinearLayout ll_back, ll_right;
     private int leftBtnImg, rightBtnImg,rightBtnImg2;
     private String leftText, rightText, titleContent;
-    private boolean leftBtnVisible, rightBtnVisible;//左右图片按钮是否显示
+    private boolean leftBtnVisible, rightBtn1Visible,rightBtn2Visible;//左右图片按钮是否显示
     private boolean InterceptOrReturn = false;//是否拦截返回按钮点击事件
 
     public interface backOnclickListener {
@@ -63,7 +63,8 @@ public class TitleView extends LinearLayout {
             rightBtnImg = a.getResourceId(R.styleable.titleView_rightImage, 0);
             rightBtnImg2 = a.getResourceId(R.styleable.titleView_rightImage2, 0);
             rightText = a.getString(R.styleable.titleView_rightText);
-            rightBtnVisible = a.getBoolean(R.styleable.titleView_rightImageVisible, false);
+            rightBtn1Visible = a.getBoolean(R.styleable.titleView_rightImage1Visible, false);
+            rightBtn2Visible = a.getBoolean(R.styleable.titleView_rightImage2Visible, false);
             InterceptOrReturn = a.getBoolean(R.styleable.titleView_interceptOrReturn, false);
 
             ll_back = (LinearLayout) view.findViewById(R.id.ll_back);
@@ -89,11 +90,14 @@ public class TitleView extends LinearLayout {
             iv_right2 = (ImageView) view.findViewById(R.id.iv_right2);
             iv_right.setImageResource(rightBtnImg);
             iv_right2.setImageResource(rightBtnImg2);
-            if (rightBtnVisible == true) {
+            if (rightBtn1Visible == true) {
                 iv_right.setVisibility(VISIBLE);
-                iv_right2.setVisibility(VISIBLE);
             } else {
                 iv_right.setVisibility(INVISIBLE);
+            }
+            if (rightBtn2Visible == true) {
+                iv_right2.setVisibility(VISIBLE);
+            } else {
                 iv_right2.setVisibility(INVISIBLE);
             }
             if(0==rightBtnImg){

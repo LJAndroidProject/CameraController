@@ -34,7 +34,8 @@
         <!--右上角图片2-->
         <attr name="rightImage2" format="reference"></attr>
         <!--右上角图片是否显示-->
-        <attr name="rightImageVisible" format="boolean"></attr>
+        <attr name="rightImage1Visible" format="boolean"></attr>
+        <attr name="rightImage2Visible" format="boolean"></attr>
         <!--右上角文字-->
         <attr name="rightText" format="string"></attr>
         <!--是否拦截返回按钮-->

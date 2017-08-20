@@ -107,11 +107,13 @@ public class DeviceListActivity extends BaseActivity {
             public void Onclick(int position) {
                 menu.showContent();
                 switch (position){
-                    case 1:
-                        Intent intent2 =new Intent(DeviceListActivity.this,VersionInforActivity.class);
-                        startActivity(intent2);
+                    case 0:  //主页
+                        finish();
                         break;
-                    case 2:
+                    case 1:  //设置
+
+                        break;
+                    case 2:  //注销
                         Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
                         startActivity(intent);
                         StorageFactory.getInstance().getSharedPreference(DeviceListActivity.this).saveBoolean(UserApi.ISFORGETPWD,false);
@@ -119,8 +121,15 @@ public class DeviceListActivity extends BaseActivity {
                         MainWebViewActivity.mActiviry.finish();
                         finish();
                         break;
-                    case 0:
-                        finish();
+                    case 3: //退出
+                        StorageFactory.getInstance().getSharedPreference(DeviceListActivity.this).saveBoolean(UserApi.ISFORGETPWD,false);
+                        if (null != MainWebViewActivity.mActiviry)
+                            MainWebViewActivity.mActiviry.finish();
+                       System.exit(0);
+                        break;
+                    case 4: //版本信息
+                        Intent intent4=new Intent(DeviceListActivity.this,VersionInforActivity.class);
+                        startActivity(intent4);
                         break;
                     default:
                         break;

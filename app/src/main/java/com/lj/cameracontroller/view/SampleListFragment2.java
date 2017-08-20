@@ -49,8 +49,10 @@ public class SampleListFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mActivity = SampleListFragment2.this.getActivity();
 //        listData.add(new SampleItem("配电房列表", getResources().getDrawable(R.mipmap.btn_right_arror)));
-        listData.add(new SampleItem("版本信息", getResources().getDrawable(R.mipmap.btn_right_arror)));
-        listData.add(new SampleItem("注销", getResources().getDrawable(R.mipmap.btn_right_arror)));
+        listData.add(new SampleItem("设置", getResources().getDrawable(R.mipmap.up_icon)));
+        listData.add(new SampleItem("注销", getResources().getDrawable(R.mipmap.up_icon)));
+        listData.add(new SampleItem("退出", getResources().getDrawable(R.mipmap.up_icon)));
+        listData.add(new SampleItem("版本信息", getResources().getDrawable(R.mipmap.up_icon)));
         view = inflater.inflate(R.layout.left_menu, container, false);
         listView = (ListView) view.findViewById(R.id.list);
         adapter = new MyAdapter();

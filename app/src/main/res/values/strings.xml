@@ -36,4 +36,5 @@
     <string name="str_yes">确定</string>
     <string name="str_no_permision">没有设备操作权限，请允许程序的操作权限</string>
     <string name="apn_setting_cancel">取消</string>
+    <string name="str_yushedian">预设点位置</string>
 </resources>
