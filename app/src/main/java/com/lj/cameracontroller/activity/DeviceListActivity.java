@@ -2,6 +2,8 @@ package com.lj.cameracontroller.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -104,22 +106,25 @@ public class DeviceListActivity extends BaseActivity {
             @Override
             public void Onclick(int position) {
                 menu.showContent();
-               switch (position){
-                   case 1:
-                       Intent intent2 =new Intent(DeviceListActivity.this,VersionInforActivity.class);
-                       startActivity(intent2);
-                       break;
-                   case 2:
-                       Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
-                       startActivity(intent);
-                       finish();
-                       break;
-                   case 0:
-                       finish();
-                       break;
-                   default:
-                       break;
-               }
+                switch (position){
+                    case 1:
+                        Intent intent2 =new Intent(DeviceListActivity.this,VersionInforActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case 2:
+                        Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        StorageFactory.getInstance().getSharedPreference(DeviceListActivity.this).saveBoolean(UserApi.ISFORGETPWD,false);
+                        if (null != MainWebViewActivity.mActiviry)
+                        MainWebViewActivity.mActiviry.finish();
+                        finish();
+                        break;
+                    case 0:
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
 
             }
         });
@@ -261,17 +266,10 @@ public class DeviceListActivity extends BaseActivity {
                 dialog.dismiss();
                 Logger.e(TAG, result);
                 Log.e("设备列表返回数据：","result="+result);
-                if (!"".equals(result) && !"null".equals(result)) {
-                    Gson gson = HDateGsonAdapter.createGson();
-                    DeviceListEntity data = gson.fromJson(result, DeviceListEntity.class);
-                    if (null != data && data.getCode() == 1 && null != data.getResult() && data.getResult().size() > 0) { //获取数据成功
-                        listData.clear();
-                        listData2.clear();
-                        listData.addAll(data.getResult());
-                        listData2.addAll(data.getResult());
-                        adapter.notifyDataSetChanged();
-                    }
-                }
+                Message message = Message.obtain();
+                message.obj = result;
+                message.what = 0;
+                myHandler.sendMessage(message);
             }
 
             @Override
@@ -291,5 +289,27 @@ public class DeviceListActivity extends BaseActivity {
         }
     }
 
+    private Handler myHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    String result = (String) msg.obj;
+                    if (!"".equals(result) && !"null".equals(result)) {
+                        Gson gson = HDateGsonAdapter.createGson();
+                        DeviceListEntity data = gson.fromJson(result, DeviceListEntity.class);
+                        if (null != data && data.getCode() == 1 && null != data.getResult() && data.getResult().size() > 0) { //获取数据成功
+                            listData.clear();
+                            listData2.clear();
+                            listData.addAll(data.getResult());
+                            listData2.addAll(data.getResult());
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                    break;
+            }
+        }
+    };
 
 }

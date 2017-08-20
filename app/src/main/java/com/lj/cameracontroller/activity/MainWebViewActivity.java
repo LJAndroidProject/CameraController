@@ -64,6 +64,7 @@ public class MainWebViewActivity extends BaseActivity{
     private final int UPDATE_VERSION = 0 ;
     private SlidingMenu menu;
     private SampleListFragment2 fragment;
+    public static Activity mActiviry;
 
 
     @Override
@@ -74,8 +75,8 @@ public class MainWebViewActivity extends BaseActivity{
         initData();
     }
 
-
     private void initView(){
+        mActiviry = this;
         titleView=(TitleView) findViewById(R.id.tv_top);
         titleView.setTv_title(getResources().getString(R.string.str_mainHome));
         webViewHome=(WebView) findViewById(R.id.webViewHome);

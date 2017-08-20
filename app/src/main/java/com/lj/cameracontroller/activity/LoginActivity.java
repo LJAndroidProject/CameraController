@@ -97,9 +97,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if(cb_Forgetpwd.isChecked()){ //如果点击了记住密码则保存密码
                         StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveString(UserApi.LOGIN_USERNAME,userName);
                         StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveString(UserApi.LOGIN_USER_PWD,passWord);
+                    StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveBoolean(UserApi.ISFORGETPWD,cb_Forgetpwd.isChecked());
+
                 }else{ //保存账号
                     StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveString(UserApi.LOGIN_USERNAME,userName);
                     StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveString(UserApi.LOGIN_USER_PWD,"");
+                    StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveBoolean(UserApi.ISFORGETPWD,cb_Forgetpwd.isChecked());
                 }
                 login();
                 break;

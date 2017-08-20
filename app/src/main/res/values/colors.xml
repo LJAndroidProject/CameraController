@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="main_color_098dbe">#098dbe</color>
+    <!--<color name="main_color_098dbe">#098dbe</color>-->
+    <color name="main_color_098dbe">#053364</color>
     <color name="secondary_color_01baff">#01baff</color>
     <color name="secondary_color_00c249">#00c249</color>
     <color name="secondary_color_333333">#333333</color>

@@ -202,6 +202,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         tvTitle.setSingleLine(true);
         tvTitle.setPadding((int) getResources().getDimension(R.dimen.title_bar_backimage_width),0,0,0);
         IPCSurfaceView = (SurfaceView) findViewById(R.id.IPCPlaySurFaceView);
+        IPCSurfaceView.setRotation(180);
         IPCPro = (ProgressBar) findViewById(R.id.IPCPlayPro);
         llpreset = (LinearLayout) findViewById(R.id.ll_control_tv_preset);
         tvpreset = (ImageView) findViewById(R.id.ipc_control_tv_preset);
@@ -805,7 +806,9 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
 //
 //            }
         }else if(viewId == R.id.ll_control_tv_updown){//上下 视频翻转按钮
-
+//            StopPreview();
+//            IPCSurfaceView.setRotation(180);
+//            StartPreview();
         }else if(viewId == R.id.ll_control_tv_photograph){//拍照按钮
             NET_DVR_JPEGPARA strJpeg = new  NET_DVR_JPEGPARA();
             strJpeg.wPicQuality = 0xff;
