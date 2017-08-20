@@ -224,7 +224,7 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
         tvTitle.setSingleLine(true);
         tvTitle.setPadding((int) getResources().getDimension(R.dimen.title_bar_backimage_width),0,0,0);
         IPCSurfaceView = (SurfaceView) findViewById(R.id.IPCPlaySurFaceView);
-        IPCSurfaceView.setRotation(180);
+//        IPCSurfaceView.setRotation(180);
         IPCPro = (ProgressBar) findViewById(R.id.IPCPlayPro);
         llpreset = (LinearLayout) findViewById(R.id.ll_control_tv_preset);
         tvpreset = (ImageView) findViewById(R.id.ipc_control_tv_preset);
