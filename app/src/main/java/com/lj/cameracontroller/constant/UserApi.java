@@ -40,6 +40,8 @@ public class UserApi {
 
     public static final  String MAINWEBURL = URL+"/apps/mt/index.aspx";
 
+    public static final  String SETTINGWEBURL = URL+"/apps/mt/info.aspx";
+
     //版本更新
     public static  final  String UPDATA=URL+"api/mt/app_info.aspx";
 

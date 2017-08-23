@@ -102,7 +102,10 @@ public class MainWebViewActivity extends BaseActivity {
                 menu.showContent();
                 switch (position) {
                     case 0: //设置
-
+                        Intent intentSet =new Intent(MainWebViewActivity.this,SettingWebActivity.class);
+                        intentSet.putExtra("url",UserApi.SETTINGWEBURL+"?access_token="+accessToken+"&user_id="+userId
+                                +"&mobile="+ StorageFactory.getInstance().getSharedPreference(MainWebViewActivity.this).getString(UserApi.LOGIN_USERNAME));
+                        startActivity(intentSet);
                         break;
                     case 1: //注销
                         Intent intent = new Intent(MainWebViewActivity.this, LoginActivity.class);

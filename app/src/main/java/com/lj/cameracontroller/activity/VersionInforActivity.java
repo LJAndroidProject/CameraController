@@ -149,6 +149,17 @@ public class VersionInforActivity extends BaseActivity implements View.OnClickLi
                         myAlertDialog.show();
                     }
                     break;
+                case 1:
+                    myAlertDialog.ValidationOperationDialog().setMsg("已是最新版本")
+                            .setNoButtonGone(true)
+                            .setPositiveButton(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    myAlertDialog.dismiss();
+                                }
+                            });
+                    myAlertDialog.show();
+                    break;
                 default:
                     break;
             }
@@ -181,6 +192,11 @@ public class VersionInforActivity extends BaseActivity implements View.OnClickLi
                         if (Version > AppSettings.getAppVersionNumber(VersionInforActivity.this)) {
                             Message message = Message.obtain();
                             message.what = UPDATE_VERSION;
+
+                            myHandler.sendMessage(message);
+                        }else{
+                            Message message = Message.obtain();
+                            message.what = 1;
 
                             myHandler.sendMessage(message);
                         }

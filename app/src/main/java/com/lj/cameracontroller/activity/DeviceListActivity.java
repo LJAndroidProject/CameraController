@@ -111,7 +111,11 @@ public class DeviceListActivity extends BaseActivity {
                         finish();
                         break;
                     case 1:  //设置
-
+                        Intent intentSet =new Intent(DeviceListActivity.this,SettingWebActivity.class);
+                        intentSet.putExtra("url",UserApi.SETTINGWEBURL+"?access_token="+accessToken+"&user_id="+userId
+                                +"&mobile="+ StorageFactory.getInstance().getSharedPreference(DeviceListActivity.this).getString(UserApi.LOGIN_USERNAME));
+                        startActivity(intentSet);
+                        finish();
                         break;
                     case 2:  //注销
                         Intent intent =new Intent(DeviceListActivity.this,LoginActivity.class);
