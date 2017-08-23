@@ -3,11 +3,17 @@ package com.lj.cameracontroller.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -69,6 +75,7 @@ import org.xml.sax.SAXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -79,6 +86,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import static android.os.Environment.getExternalStorageDirectory;
+import static android.os.Environment.getExternalStoragePublicDirectory;
+import static android.os.Environment.getExternalStorageState;
+import static com.lj.cameracontroller.constant.UserApi.file;
 
 /**
  * Created by ljw on 2017/7/17 0017.
@@ -104,6 +114,11 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
     private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;//设备参数
 
     private NET_DVR_PRESET_NAME_ARRAY m_presetNameArray = new NET_DVR_PRESET_NAME_ARRAY();//预置点数组列表
+
+    private boolean isSaveRealData = false;
+
+    private String savaRealDataPath = "";
+
 
     private int				m_iLogID				= -1;				// return by NET_DVR_Login_v30
     private int 			m_iPlayID				= -1;				// return by NET_DVR_RealPlay_V30
@@ -306,6 +321,20 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
             }
         });
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        if(isSaveRealData){
+            if(isSaveRealData){
+                tvUpDown.setImageResource(R.mipmap.rec_start);
+                isSaveRealData = false;
+                HCNetSDK.getInstance().NET_DVR_StopSaveRealData(m_iPlayID);
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(savaRealDataPath))));
+            }
+        }
+    }
+
     private Handler myHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -908,21 +937,39 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
 //
 //            }
         }else if(viewId == R.id.ll_control_tv_updown){//上下 视频翻转按钮
-//            StopPreview();
-//            IPCSurfaceView.setRotation(180);
-//            StartPreview();
-        }else if(viewId == R.id.ll_control_tv_photograph){//拍照按钮
-            NET_DVR_JPEGPARA strJpeg = new  NET_DVR_JPEGPARA();
-            strJpeg.wPicQuality = 0xff;
-            strJpeg.wPicSize = 2;
-            String path = new String(getExternalStorageDirectory().getAbsolutePath()+"/somantou");
+            String path = new String(getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath()+"/dlkj");
             File dirFirstFolder = new File(path);
             if(!dirFirstFolder.exists()){
                 dirFirstFolder.mkdirs();
             }
-            boolean isSuccess = HCNetSDK.getInstance().NET_DVR_CaptureJPEGPicture(m_iLogID, m_iStartChan, strJpeg, path+"/"+TimeUtils.getDateYMDHMS()+".jpg");
+            if(isSaveRealData){
+                tvUpDown.setImageResource(R.mipmap.rec_start);
+                isSaveRealData = false;
+                HCNetSDK.getInstance().NET_DVR_StopSaveRealData(m_iPlayID);
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(savaRealDataPath))));
+            }else {
+                tvUpDown.setImageResource(R.mipmap.rec_stop);
+                isSaveRealData = true;
+                String fileName = path+"/"+TimeUtils.getDateYMDHMS()+".mp4";
+                Toast.makeText(this,"开始录像",Toast.LENGTH_SHORT).show();
+                HCNetSDK.getInstance().NET_DVR_SaveRealData(m_iPlayID,fileName);
+            }
+        }else if(viewId == R.id.ll_control_tv_photograph){//拍照按钮
+            NET_DVR_JPEGPARA strJpeg = new  NET_DVR_JPEGPARA();
+            strJpeg.wPicQuality = 0xff;
+            strJpeg.wPicSize = 2;
+//            String path = new String(getExternalStorageDirectory().getAbsolutePath()+"/somantou");
+            String path = new String(getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath()+"/dlkj");
+            File dirFirstFolder = new File(path);
+            if(!dirFirstFolder.exists()){
+                dirFirstFolder.mkdirs();
+            }
+            String imageName = TimeUtils.getDateYMDHMS();
+            String imagePath = path+"/"+imageName+".jpg";
+            boolean isSuccess = HCNetSDK.getInstance().NET_DVR_CaptureJPEGPicture(m_iLogID, m_iStartChan, strJpeg, imagePath);
             if(isSuccess){
                 Toast.makeText(this,"拍照保存成功",Toast.LENGTH_LONG).show();
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imagePath))));
             }else{
                 Toast.makeText(this,"拍照失败，请重试",Toast.LENGTH_LONG).show();
             }
