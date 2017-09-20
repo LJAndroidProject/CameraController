@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void init(){
-        dialog=new MyDialog(this,0);
+        dialog=new MyDialog(this,R.style.Dialog);
         userName=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getString(UserApi.LOGIN_USERNAME);
         passWord=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getString(UserApi.LOGIN_USER_PWD);
         isforgetPwd=StorageFactory.getInstance().getSharedPreference(LoginActivity.this).getBoolean(UserApi.ISFORGETPWD);

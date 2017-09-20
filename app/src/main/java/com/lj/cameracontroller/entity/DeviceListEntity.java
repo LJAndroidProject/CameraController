@@ -49,6 +49,8 @@ public class DeviceListEntity implements Serializable {
         private String gds_name = "";//供电所名称
         private String pdf_code = "";//配电房编号
         private String pdf_name = "";//配电房名称
+        private String robot_code="";//机器人编号
+        private String robot_name="";//机器人名称
 
         public String getIpc_sn() {
             return ipc_sn;
@@ -123,5 +125,20 @@ public class DeviceListEntity implements Serializable {
         }
 
 
+        public String getRobot_code() {
+            return robot_code;
+        }
+
+        public void setRobot_code(String robot_code) {
+            this.robot_code = robot_code;
+        }
+
+        public String getRobot_name() {
+            return robot_name;
+        }
+
+        public void setRobot_name(String robot_name) {
+            this.robot_name = robot_name;
+        }
     }
 }

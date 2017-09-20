@@ -45,4 +45,9 @@ public class UserApi {
     //版本更新
     public static  final  String UPDATA=URL+"api/mt/app_info.aspx";
 
+    //机器人控制接口
+    public static  final  String CONTROR=URL+"api/robot/control.aspx";
+
+
+
 }

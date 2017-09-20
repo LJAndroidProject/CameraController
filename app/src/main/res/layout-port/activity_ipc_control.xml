@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:leftImage="@mipmap/back_png"
-        app:rightImage1Visible="true"
-        app:rightImage="@mipmap/right_title"></com.lj.cameracontroller.view.TitleView>
+        app:rightImage="@mipmap/right_title"
+        app:rightImage1Visible="true"></com.lj.cameracontroller.view.TitleView>
 
     <RelativeLayout
         android:id="@+id/IPCPlayLayout"
@@ -48,8 +48,7 @@
                 android:layout_height="@dimen/btn_height"
                 android:gravity="center_vertical"
                 android:minHeight="@dimen/btn_height"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
                 <!--预置顶-->
                 <LinearLayout
                     android:id="@+id/ll_control_tv_preset"
@@ -246,8 +245,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:gravity="center">
 
                         <FrameLayout
@@ -316,10 +315,11 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1.1"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        ></LinearLayout>
+                        android:layout_height="20dp"></LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -450,14 +450,15 @@
                             android:textSize="@dimen/main_title" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        ></LinearLayout>
+                        android:layout_height="20dp"></LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
+
             <!--底部操作按钮-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -465,9 +466,456 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/caozuokongjian_bg"
                 android:orientation="horizontal"
-                android:visibility="gone"></LinearLayout>
+                android:visibility="visible">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <!--机器人上下左右控件-->
+                    <RelativeLayout
+                        android:id="@+id/rl_jiqiren"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:visibility="visible">
+
+                        <FrameLayout
+                            android:id="@+id/fl_jiqirencenter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/btn_jiqiren"></FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_left"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/fl_jiqirencenter"
+                            android:background="@drawable/left_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_right"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/fl_jiqirencenter"
+                            android:background="@drawable/right_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_down"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_below="@+id/fl_jiqirencenter"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/down_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_up"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_above="@+id/fl_jiqirencenter"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/up_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                    </RelativeLayout>
+
+                    <!--连续快进布局-->
+                    <RelativeLayout
+                        android:id="@+id/rl_jiqiren_lianxu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                        <FrameLayout
+                            android:id="@+id/fl_jiqirencenter_lianxu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/btn_jiqiren"></FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_left_lianxu"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/fl_jiqirencenter_lianxu"
+                            android:background="@drawable/left_btn_lianxu_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_right_lianxu"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/fl_jiqirencenter_lianxu"
+                            android:background="@drawable/right_btn_lianxu_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_down_lianxu"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_below="@+id/fl_jiqirencenter_lianxu"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/down_btn_lisnxu_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_up_lianxu"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_above="@+id/fl_jiqirencenter_lianxu"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/up_btn_lianxu_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                    </RelativeLayout>
+
+                    <!--轨道位置等布局-->
+                    <LinearLayout
+                        android:id="@+id/ll_shujukongzhi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                        <!--轨道位置-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="轨道位置:"
+                                android:textColor="@color/secondary_color_333333" />
+
+                            <EditText
+                                android:id="@+id/et_guidao"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/edit_text_bg" />
+                        </LinearLayout>
+                        <!--高度位置-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="高度位置:"
+                                android:textColor="@color/secondary_color_333333" />
+
+                            <EditText
+                                android:id="@+id/et_gaodu"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/edit_text_bg" />
+                        </LinearLayout>
+                        <!--指定站点-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="指定站点:"
+                                android:textColor="@color/secondary_color_333333" />
+
+                            <EditText
+                                android:id="@+id/et_zhidingzhandian"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/edit_text_bg" />
+                        </LinearLayout>
+                        <!--指定高度-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="指定高度:"
+                                android:textColor="@color/secondary_color_333333" />
+
+                            <EditText
+                                android:id="@+id/et_zhidinggaodu"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/edit_text_bg" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/secondary_color_cccccc" />
+
+                <!--机器人部分右边控制按钮-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_shenssuoadd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:gravity="right"
+                            android:padding="5dp"
+                            android:src="@drawable/add_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/str_shensou"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/secondary_text" />
+
+                        <ImageView
+                            android:id="@+id/ipc_control_tv_shenssuoreduce"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left"
+                            android:padding="5dp"
+                            android:src="@drawable/jian_btn_bg"
+                            android:text="@string/str_reduce"
+                            android:textColor="@color/secondary_color_097ba5"
+                            android:textSize="@dimen/main_title" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_kzms"
+                            android:layout_width="57dp"
+                            android:layout_height="45dp"
+                            android:layout_alignParentLeft="true"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:src="@mipmap/btn7" />
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_gdyzw"
+                            android:layout_width="67dp"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:gravity="left"
+                            android:src="@mipmap/btn8"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_sdkz"
+                            android:layout_width="57dp"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_alignParentLeft="true"
+                            android:src="@mipmap/btn9" />
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_gaodyzw"
+                            android:layout_width="67dp"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="left"
+                            android:src="@mipmap/btn10" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_qhcd"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="left"
+                            android:src="@mipmap/btn12"
+                            android:visibility="gone"/>
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_jjzt"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:src="@drawable/jinjizanting_bg"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/ipc_jiqiren_qhcd"
+                            android:layout_toEndOf="@+id/ipc_jiqiren_qhcd" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_dandianbujin"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="left"
+                            android:src="@drawable/danbukuaijin_bg"
+                            android:visibility="gone"/>
+                        <ImageView
+                            android:id="@+id/ipc_jiqiren_lianxubujun"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:scaleType="fitXY"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="left"
+                            android:src="@drawable/lianxukuaijin_bg"
+                            android:visibility="visible"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
