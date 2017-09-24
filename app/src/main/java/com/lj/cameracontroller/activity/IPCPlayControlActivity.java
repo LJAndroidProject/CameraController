@@ -416,6 +416,13 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                             });
                     myAlertDialog.show();
                     break;
+
+                case 1:  //机器人操作成功
+                    Toast.makeText(IPCPlayControlActivity.this, "操作成功", Toast.LENGTH_SHORT).show();
+                    break;
+                case -1: //机器人操作失败
+                    Toast.makeText(IPCPlayControlActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     };
@@ -448,9 +455,11 @@ public class IPCPlayControlActivity extends BaseActivity implements SurfaceHolde
                     Logger.e(TAG, result);
                     ControlEntity entity = gson.fromJson(result, ControlEntity.class);
                     if (entity.state == 1) {
-                        Toast.makeText(IPCPlayControlActivity.this, "操作成功", Toast.LENGTH_SHORT).show();
+                        myHandler.sendEmptyMessage(1);
+
                     } else if (entity.state == -1) {
-                        Toast.makeText(IPCPlayControlActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+                        myHandler.sendEmptyMessage(-1);
+
                     }
                 }
             }

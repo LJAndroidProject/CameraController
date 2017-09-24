@@ -221,7 +221,7 @@
             <LinearLayout
                 android:id="@+id/ll_ipc_ptz_control"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
@@ -462,10 +462,10 @@
             <!--底部操作按钮-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/caozuokongjian_bg"
                 android:orientation="horizontal"
@@ -487,64 +487,6 @@
 
 
                     <!--机器人上下左右控件-->
-                    <RelativeLayout
-                        android:id="@+id/rl_jiqiren"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:gravity="center"
-                        android:visibility="visible">
-
-                        <FrameLayout
-                            android:id="@+id/fl_jiqirencenter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:background="@mipmap/btn_jiqiren"></FrameLayout>
-
-                        <TextView
-                            android:id="@+id/tv_jiqirenbtn_left"
-                            android:layout_width="34dp"
-                            android:layout_height="74dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="10dp"
-                            android:layout_toLeftOf="@+id/fl_jiqirencenter"
-                            android:background="@drawable/left_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5" />
-
-                        <TextView
-                            android:id="@+id/tv_jiqirenbtn_right"
-                            android:layout_width="34dp"
-                            android:layout_height="74dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_toRightOf="@+id/fl_jiqirencenter"
-                            android:background="@drawable/right_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5" />
-
-
-                        <TextView
-                            android:id="@+id/tv_jiqirenbtn_down"
-                            android:layout_width="74dp"
-                            android:layout_height="34dp"
-                            android:layout_below="@+id/fl_jiqirencenter"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/down_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5" />
-
-                        <TextView
-                            android:id="@+id/tv_jiqirenbtn_up"
-                            android:layout_width="74dp"
-                            android:layout_height="34dp"
-                            android:layout_above="@+id/fl_jiqirencenter"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/up_btn_bg"
-                            android:textColor="@color/secondary_color_097ba5" />
-
-                    </RelativeLayout>
 
                     <!--连续快进布局-->
                     <RelativeLayout
@@ -707,6 +649,67 @@
                                 android:background="@drawable/edit_text_bg" />
                         </LinearLayout>
                     </LinearLayout>
+
+
+                    <!--机器人单步-->
+                    <RelativeLayout
+                        android:id="@+id/rl_jiqiren"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:visibility="visible">
+
+                        <FrameLayout
+                            android:id="@+id/fl_jiqirencenter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/btn_jiqiren"></FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_left"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/fl_jiqirencenter"
+                            android:background="@drawable/left_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_right"
+                            android:layout_width="34dp"
+                            android:layout_height="74dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/fl_jiqirencenter"
+                            android:background="@drawable/right_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_down"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_below="@+id/fl_jiqirencenter"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/down_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                        <TextView
+                            android:id="@+id/tv_jiqirenbtn_up"
+                            android:layout_width="74dp"
+                            android:layout_height="34dp"
+                            android:layout_above="@+id/fl_jiqirencenter"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/up_btn_bg"
+                            android:textColor="@color/secondary_color_097ba5" />
+
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <TextView
@@ -822,7 +825,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_sdkz"
                             android:layout_width="57dp"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -832,7 +835,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_gaodyzw"
                             android:layout_width="67dp"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -855,7 +858,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_qhcd"
                             android:layout_width="45dp"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -867,7 +870,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_jjzt"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -891,7 +894,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_dandianbujin"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -902,7 +905,7 @@
                         <ImageView
                             android:id="@+id/ipc_jiqiren_lianxubujun"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"

@@ -16,7 +16,8 @@ public class UserApi {
      */
     public static final String Bugly_ID = "eb5cdd21e0";
     // 统一服务器
-    public static final String URL = "http://dljk.st.somantou365.online/";
+//    public static final String URL = "http://dljk.st.somantou365.online/";
+    public static final String URL = "http://120.78.77.26:9001/";  //正式服务器
 
 
     //登录接口
