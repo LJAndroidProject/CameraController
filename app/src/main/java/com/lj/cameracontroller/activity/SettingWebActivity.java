@@ -10,9 +10,11 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lj.cameracontroller.R;
 import com.lj.cameracontroller.base.BaseActivity;
 import com.lj.cameracontroller.base.BaseApplication;
+import com.lj.cameracontroller.constant.UserApi;
 import com.lj.cameracontroller.entity.UpdateEntity;
 import com.lj.cameracontroller.entity.UserInfo;
 import com.lj.cameracontroller.utils.NetworkUtils;
+import com.lj.cameracontroller.utils.StorageFactory;
 import com.lj.cameracontroller.view.MyAlertDialog;
 import com.lj.cameracontroller.view.MyDialog;
 import com.lj.cameracontroller.view.SampleListFragment2;
@@ -79,6 +81,7 @@ public class SettingWebActivity extends BaseActivity {
                     case 1: //注销
                         Intent intent = new Intent(SettingWebActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        StorageFactory.getInstance().getSharedPreference(SettingWebActivity.this).saveBoolean(UserApi.ISFORGETPWD,false);
                         finish();
                         break;
                     case 2: //退出

@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -65,7 +66,9 @@ public class MainWebViewActivity extends BaseActivity {
     private SlidingMenu menu;
     private SampleListFragment2 fragment;
     public static Activity mActiviry;
-
+    // 按一次退出按钮后等待2000毫秒如果再按即程序退出
+    private long waitTime = 2000;
+    private long touchTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,7 @@ public class MainWebViewActivity extends BaseActivity {
                     case 1: //注销
                         Intent intent = new Intent(MainWebViewActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        StorageFactory.getInstance().getSharedPreference(MainWebViewActivity.this).saveBoolean(UserApi.ISFORGETPWD,false);
                         finish();
                         break;
                     case 2: //退出
@@ -181,6 +185,20 @@ public class MainWebViewActivity extends BaseActivity {
         webViewHome.loadUrl(url);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            long currentTime = System.currentTimeMillis();
+            if ((currentTime - touchTime) >= waitTime) {
+                Toast.makeText(this, "再按一次退出程序！", Toast.LENGTH_SHORT).show();
+                touchTime = currentTime;
+            } else {
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+            return false;
+        }
+        return false;
+    }
 
     public class ClickButton {
         private Activity act;

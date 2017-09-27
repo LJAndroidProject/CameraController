@@ -135,7 +135,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         StorageFactory.getInstance().getSharedPreference(LoginActivity.this).saveDao(UserApi.USERINFOR,data);
                         Intent intent =new Intent(LoginActivity.this,MainWebViewActivity.class);
 //                        intent.putExtra("url","http://dljk.st.somantou365.online/apps/mt/index.aspx");
-                        intent.putExtra("url",UserApi.MAINWEBURL+"?access_token="+data.getResult().getAccess_token()+"&user_id="+data.getResult().getUser_id());
+                        String mainUrl = UserApi.MAINWEBURL+"?access_token="+data.getResult().getAccess_token()+"&user_id="+data.getResult().getUser_id()+"&mobile="+userName;
+                        Log.i("mainUrl",mainUrl);
+                        intent.putExtra("url",mainUrl);
                         startActivity(intent);
 //                        Intent intent =new Intent(LoginActivity.this,DeviceListActivity.class);
 //                        startActivity(intent);

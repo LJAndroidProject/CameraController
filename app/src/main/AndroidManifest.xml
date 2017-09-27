@@ -24,7 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/QLTheme">
         <activity android:name="com.lj.cameracontroller.activity.LoginActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize">
            <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,16 +38,13 @@
         </activity>
         <activity android:name="com.lj.cameracontroller.activity.MainWebViewActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity android:name="com.lj.cameracontroller.activity.SettingWebActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity android:name="com.lj.cameracontroller.activity.DeviceListActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
@@ -65,7 +61,6 @@
             <!--</intent-filter>-->
         </activity>
         <activity android:name=".activity.VersionInforActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
